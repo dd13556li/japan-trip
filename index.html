@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>九州10天9夜 三代同堂之旅</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: "class" }
+  </script>
+  <style>
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "react": "https://esm.sh/react@18",
+      "react/jsx-runtime": "https://esm.sh/react@18/jsx-runtime",
+      "react-dom": "https://esm.sh/react-dom@18",
+      "react-dom/client": "https://esm.sh/react-dom@18/client",
+      "lucide-react": "https://esm.sh/lucide-react@latest"
+    }
+  }
+  </script>
+
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel" data-type="module">
+    import { createRoot } from 'react-dom/client';
+import React, { useState, useEffect } from 'react';
+import { 
+  Map, Calendar, Train, Home, Ticket, Info, MapPin, 
+  Clock, Users, Sun, Coffee, Camera, ChevronDown, ChevronUp, Calculator, Wallet, Car, Moon, ArrowRight, Navigation, Map as MapIcon, Route
+} from 'lucide-react';
+
+// ==========================================
+// 💡 資料區塊 (Data Section) 💡
+// ==========================================
+
+const overview = {
+  title: "九州10天9夜 盛夏三代同堂之旅",
+  subtitle: "不自駕・鐵道與溫泉的夏日回憶 (2大、2小、1長輩)",
+  dates: "預計 2026年 7月中旬出發",
+  pace: "輕鬆、彈性、避暑為佳"
+};
+
+const mapNodes = {
+  fukuoka: { id: 'fukuoka', name: '福岡(博多)', x: 40, y: 22 },
+  dazaifu: { id: 'dazaifu', name: '太宰府', x: 42, y: 28 },
+  beppu: { id: 'beppu', name: '別府', x: 80, y: 38 },
+  yufuin: { id: 'yufuin', name: '由布院', x: 68, y: 42 },
+  kumamoto: { id: 'kumamoto', name: '熊本', x: 38, y: 62 },
+  aso: { id: 'aso', name: '阿蘇', x: 55, y: 56 }
+};
+
+const bases = [
+  {
+    id: 1,
+    name: "福岡 (博多)",
+    nights: "3晚 (Day 1 - Day 3)",
+    description: "九州最大的交通樞紐，機場地鐵5分鐘直達。周邊百貨林立，無障礙設施完善，極適合做為抵達後的第一個放鬆據點。",
+    hotels: [
+      { name: "JR九州Blossom博多中央", desc: "博多車站筑紫口步行2分鐘，極度便利，省去拖行李的力氣。" },
+      { name: "Hotel Forza Hakataeki Chikushi-Guchi I", desc: "房間內有按摩椅，深受長輩喜愛，且有適合家庭的房型。" },
+      { name: "博多都酒店 (Miyako Hotel Hakata)", desc: "車站旁，頂樓有溫泉泳池，小朋友可以玩水，長輩可泡湯。" }
+    ],
+    guesthouses: [
+      { name: "Rakuten STAY 博多車站北", desc: "經濟實惠的公寓式民宿，配有小廚房與洗衣機，適合家庭長住。" },
+      { name: "Trip Pod (博多周邊系列公寓)", desc: "市區內無人管理的公寓型住宿，多房型能讓長輩與小孩有獨立空間。" }
+    ]
+  },
+  {
+    id: 2,
+    name: "大分 (別府)",
+    nights: "2晚 (Day 4 - Day 5)",
+    description: "日本湧泉量第一的溫泉之鄉。安排2晚讓長輩充分享受溫泉，小朋友也能體驗有趣的「地獄巡禮」與野生動物園。",
+    hotels: [
+      { name: "杉乃井大飯店 (Suginoi Hotel)", desc: "強烈推薦！擁有超大型溫泉樂園、超豐盛自助餐，家庭客首選，待在飯店就是景點。" },
+      { name: "AMANEK Beppu YULA-RE", desc: "別府車站步行3分鐘，頂樓有無邊際溫泉泳池，設計新穎。" },
+      { name: "別府車站前超級酒店 (Super Hotel)", desc: "平價選擇，同樣離車站近，附天然溫泉與免費早餐。" }
+    ],
+    guesthouses: [
+      { name: "J-Hoppers Beppu Guesthouse", desc: "高CP值，提供寬敞的和室家庭房，附設共用廚房可簡單料理。" },
+      { name: "別府風和林Guest House", desc: "溫馨的日式民宿，價格親民，能體驗在地日式生活。" }
+    ]
+  },
+  {
+    id: 3,
+    name: "熊本",
+    nights: "2晚 (Day 6 - Day 7)",
+    description: "九州正中央，擁有熊本城與可愛的熊本熊。搭乘新幹線直達，市區有路面電車，對長輩與小孩來說新奇且方便。",
+    hotels: [
+      { name: "THE BLOSSOM KUMAMOTO", desc: "熊本車站旁，與商場共構，高樓層視野好，完全免去拖行李轉車的麻煩。" },
+      { name: "熊本城前天然溫泉多美迎 (Dormy Inn)", desc: "近櫻町巴士總站，晚上有免費拉麵，且有大浴場。" },
+      { name: "熊本日航飯店", desc: "市中心老字號高級飯店，服務細緻，長輩住得安心舒適。" }
+    ],
+    guesthouses: [
+      { name: "旅宿 隅次 (Sumitsugu House)", desc: "傳統日式町家改建的包棟民宿，體驗在地生活，非常適合三代同堂入住。" },
+      { name: "Kumamoto Riverside Guesthouse", desc: "位於市區河畔旁的公寓型住宿，空間較大且附帶洗衣設備。" }
+    ]
+  },
+  {
+    id: 4,
+    name: "福岡 (博多)",
+    nights: "2晚 (Day 8 - Day 9)",
+    description: "最後回到博多，方便採購伴手禮以及準備第10天前往機場。建議可住與前三晚不同的飯店增加新鮮感，或住同系列。",
+    hotels: [
+      { name: "福岡大倉飯店", desc: "中洲川端站直結，近驚安殿堂與一蘭總本舖，適合最後衝刺採買。" },
+      { name: "博多站前里士滿飯店 (Richmond Hotel)", desc: "博多車站旁，高CP值，適合家庭入住。" }
+    ],
+    guesthouses: [
+      { name: "EXPECTED INN", desc: "哈利波特風格的主題民宿，若想在最後兩晚給小朋友驚喜可考慮。" },
+      { name: "博多天神周邊家庭式Airbnb", desc: "尋找附帶大客廳的房型，方便處理最後一天的戰利品與打包。" }
+    ]
+  }
+];
+
+const itinerary = [
+  {
+    day: 1,
+    title: "抵達福岡，輕鬆安頓",
+    base: "福岡 (博多)",
+    transport: "地鐵 或 計程車(2台)",
+    ticket: "單程購票 / Suica",
+    routeMap: [{ name: "福岡機場", time: "車程15分" }, { name: "博多車站飯店", time: "步行" }, { name: "周邊商場" }],
+    mapPath: ['fukuoka'], 
+    mapInfo: { distance: "約 5 km", duration: "約 20 分鐘", note: "市區極短程接駁" },
+    activities: [
+      { time: "下午", desc: "抵達福岡機場，搭乘地鐵(僅2站, 車程約 5分鐘)或計程車。因5人加上3大2小行李需分乘2台計程車(車程約 15分鐘)前往博多車站飯店Check-in。" },
+      { time: "傍晚", desc: "博多車站JR Hakata City或KITTE博多逛街。前往頂樓「燕林廣場」看火車，小朋友會很喜歡。" },
+      { time: "晚餐", desc: "博多車站空天(Kooten)美食街，冷氣涼爽，可選擇牛腸鍋或景觀餐廳，長輩不需走遠。" }
+    ],
+    tips: "第一天避免舟車勞頓，以車站周邊為主。搭乘計程車分兩台是最省力的方式。"
+  },
+  {
+    day: 2,
+    title: "文化與巨型機器人的相遇",
+    base: "福岡 (博多)",
+    transport: "西鐵電車 + 巴士",
+    ticket: "Suica / 單程購票",
+    routeMap: [{ name: "博多", time: "車程40分" }, { name: "太宰府", time: "巴士30分" }, { name: "LaLaport福岡", time: "車程30分" }, { name: "博多" }],
+    mapPath: ['fukuoka', 'dazaifu', 'fukuoka'],
+    mapInfo: { distance: "約 45 km", duration: "約 1.5 小時", note: "近郊大眾運輸接駁" },
+    activities: [
+      { time: "上午", desc: "前往「太宰府天滿宮」。從博多搭乘巴士直達(車程約 40分鐘)。參道平坦易走，適合長輩。買現烤的「梅枝餅」給小朋友當點心。" },
+      { time: "中午", desc: "太宰府附近用餐，或回到市區。" },
+      { time: "下午", desc: "搭乘直達巴士前往「LaLaport 福岡購物中心」(車程約 30分鐘)。戶外有1:1巨型鋼彈，室內有豐富遊樂區，長輩可在咖啡廳休息。" },
+      { time: "晚餐", desc: "LaLaport 美食街或餐廳，選擇多樣。" }
+    ],
+    tips: "夏日太宰府較熱，建議早上9點前出發，中午最熱時轉往室內商場。"
+  },
+  {
+    day: 3,
+    title: "清涼的海洋世界",
+    base: "福岡 (博多)",
+    transport: "JR 鹿兒島本線",
+    ticket: "Suica / 水族館門票",
+    routeMap: [{ name: "博多車站", time: "JR 40分" }, { name: "海之中道", time: "JR 40分" }, { name: "博多運河城" }],
+    mapPath: ['fukuoka'], 
+    mapInfo: { distance: "約 35 km", duration: "約 1.5 小時", note: "博多灣沿岸移動" },
+    activities: [
+      { time: "上午", desc: "搭乘JR前往「海之中道海洋世界」(車程約 40分鐘)。全室內冷氣，有精彩的海豚海獅秀，長輩與小孩都能輕鬆享受。" },
+      { time: "中午", desc: "水族館內有景觀餐廳，可看著企鵝或海豚用餐。" },
+      { time: "下午", desc: "視體力決定是否在「海之中道海濱公園」搭乘遊園小火車(減少步行)。" },
+      { time: "晚上", desc: "回到博多(車程約 40分鐘)，前往「博多運河城」看水舞秀，順便逛街與晚餐。" }
+    ],
+    tips: "💡 行李寄送日：今晚請飯店櫃檯將大件行李直接寄到「Day 6 的熊本飯店」，明天去別府只帶2天1夜輕便背包！"
+  },
+  {
+    day: 4,
+    title: "搭乘特急前往溫泉之鄉",
+    base: "大分 (別府)",
+    transport: "JR 特急音速號 + 巴士",
+    ticket: "🎫 JR 5日券 (第1天)",
+    routeMap: [{ name: "博多車站", time: "特急 2小時10分" }, { name: "別府車站", time: "巴士 20分" }, { name: "別府地獄", time: "巴士 20分" }, { name: "溫泉飯店" }],
+    mapPath: ['fukuoka', 'beppu'],
+    mapInfo: { distance: "約 160 km", duration: "約 2.5 小時", note: "跨越九州東西海岸" },
+    activities: [
+      { time: "上午", desc: "啟用 JR北九州5日券。搭乘特急「音速號」前往別府 (車程約 2小時10分)。沿途買火車便當(駅弁)當早午餐。" },
+      { time: "下午", desc: "抵達別府，飯店寄放行李。轉乘巴士(車程約 20分鐘)前往「別府地獄巡禮」。建議挑最精彩的：海地獄、血之池地獄、灶地獄。" },
+      { time: "晚上", desc: "入住別府飯店，享用飯店豐盛自助餐與溫泉設施。" }
+    ],
+    tips: "灶地獄可以喝溫泉水、吸溫泉蒸氣，小朋友會覺得很有趣。"
+  },
+  {
+    day: 5,
+    title: "動物探險 或 童話小鎮",
+    base: "大分 (別府)",
+    transport: "當地巴士 或 JR觀光列車",
+    ticket: "🎫 JR 5日券 (第2天) / 門票",
+    routeMap: [{ name: "別府", time: "巴士45分 / JR 70分" }, { name: "野生動物園 或 由布院", time: "原路返回" }, { name: "別府" }],
+    mapPath: ['beppu', 'yufuin', 'beppu'],
+    mapInfo: { distance: "約 60 km", duration: "約 2 小時", note: "山區近郊行程" },
+    activities: [
+      { time: "方案A", desc: "【不依賴 JR：野生動物園】搭乘巴士(單趟45分)前往九州自然動物園。務必預約「叢林巴士」餵食獅子大象，長輩無需走路。" },
+      { time: "方案B", desc: "【使用 JR Pass：由布院】搭乘 JR 前往童話小鎮「由布院」(搭特急約 70分)。漫步湯之坪街道吃點心、欣賞金鱗湖美景，平坦好走。" },
+      { time: "下午/傍晚", desc: "返回別府市區。若住杉乃井飯店，可提早回飯店玩水上樂園與棚湯溫泉。" }
+    ],
+    tips: "方案A需額外買動物園套票；方案B則完全發揮 JR Pass 價值(推薦提早劃位『由布院之森』)。"
+  },
+  {
+    day: 6,
+    title: "雙城記：從溫泉到名城",
+    base: "熊本",
+    transport: "JR 特急 + 新幹線 + 市電",
+    ticket: "🎫 JR 5日券 (第3天)",
+    routeMap: [{ name: "別府車站", time: "特急 2小時10分" }, { name: "博多 (轉車)", time: "新幹線 40分" }, { name: "熊本車站", time: "市電 15分" }, { name: "熊本城" }],
+    mapPath: ['beppu', 'fukuoka', 'kumamoto'],
+    mapInfo: { distance: "約 270 km", duration: "約 3 小時", note: "搭乘新幹線極速大移動" },
+    activities: [
+      { time: "上午", desc: "搭乘特急音速號回博多(約 2小時10分)，原站內轉乘「九州新幹線」前往熊本(約 40分鐘)。(總交通時間約 3小時內，新幹線極度舒適)。" },
+      { time: "中午", desc: "抵達熊本，與前天寄送的大行李重逢！入住飯店。" },
+      { time: "下午", desc: "搭乘路面電車(15分)前往「熊本城」與「櫻之馬場 城彩苑」。熊本城有無障礙空中步道，推車或長輩行走都非常輕鬆。" },
+      { time: "晚餐", desc: "城彩苑品嚐太平燕，或至市區下通商店街吃黑馬油拉麵/勝烈亭豬排。" }
+    ],
+    tips: "雖然這天搭車時間較長，但新幹線極快且舒適，跨縣市移動像搭高鐵一樣輕鬆。"
+  },
+  {
+    day: 7,
+    title: "市區尋寶 或 火山大自然",
+    base: "熊本",
+    transport: "路面電車 或 JR觀光列車",
+    ticket: "🎫 JR 5日券 (第4天) / 視方案",
+    routeMap: [{ name: "熊本", time: "市電20分 / JR 80分" }, { name: "水前寺 或 阿蘇", time: "原路返回" }, { name: "上下通" }],
+    mapPath: ['kumamoto', 'aso', 'kumamoto'],
+    mapInfo: { distance: "市區 10km / 阿蘇 90km", duration: "1小時內 / 約 3 小時", note: "視選擇方案而定" },
+    activities: [
+      { time: "方案A", desc: "【不依賴 JR：市區遊】搭乘路面電車(20分)前往「水前寺成趣園」體驗庭園餵魚。下午前往「熊本熊廣場」看部長表演，傍晚採買藥妝。" },
+      { time: "方案B", desc: "【使用 JR Pass：阿蘇】搭乘觀光列車『阿蘇男孩號』前往阿蘇(單趟80分)。車內有兒童木球池！抵達後轉乘巴士(35分)至「草千里」看馬匹與草原。" },
+      { time: "晚餐", desc: "無論哪個方案，晚上都推薦在熊本市區享用在地美食。" }
+    ],
+    tips: "方案B的「阿蘇男孩號」是非常搶手的親子神車，買完 JR Pass 後務必第一時間上網付費預約座位！"
+  },
+  {
+    day: 8,
+    title: "光影藝術的視覺饗宴",
+    base: "福岡 (博多)",
+    transport: "JR 新幹線 + 市區巴士",
+    ticket: "🎫 JR 5日券 (最後一日)",
+    routeMap: [{ name: "熊本", time: "新幹線 40分" }, { name: "博多", time: "巴士 20分" }, { name: "teamLab", time: "巴士 20分" }, { name: "天神/博多" }],
+    mapPath: ['kumamoto', 'fukuoka'],
+    mapInfo: { distance: "約 110 km", duration: "約 1.5 小時", note: "新幹線快速返北" },
+    activities: [
+      { time: "上午", desc: "JR北九州5日券最後一日。搭乘新幹線返回博多(車程約 40分鐘)。前往最後兩晚的飯店寄放行李。" },
+      { time: "下午", desc: "搭巴士(20分)前往PayPay巨蛋旁的「BOSS E・ZO FUKUOKA」。重點推薦：teamLab Forest (沉浸式光影)。視覺驚人，小孩長輩同樂。" },
+      { time: "晚上", desc: "返回博多或天神地區享用晚餐 (可嘗試福岡水炊鍋，清淡營養適合長輩)。" }
+    ],
+    tips: "teamLab建議穿著白色衣服去，拍照效果最佳。"
+  },
+  {
+    day: 9,
+    title: "彈性購物與美食日",
+    base: "福岡 (博多)",
+    transport: "地鐵 或 步行",
+    ticket: "Suica",
+    routeMap: [{ name: "飯店", time: "地鐵 15分" }, { name: "科學館/博物館", time: "地鐵 15分" }, { name: "天神/博多", time: "步行" }, { name: "飯店打包" }],
+    mapPath: ['fukuoka'],
+    mapInfo: { distance: "約 10 km", duration: "約 40 分鐘", note: "市區悠閒步調" },
+    activities: [
+      { time: "上午", desc: "彈性行程。長輩若累了可在飯店休息。家長可帶小孩搭地鐵(約 15分鐘)去「福岡市科學館」或是「麵包超人博物館」。" },
+      { time: "下午", desc: "天神地下街 或 博多車站最後的大採購（藥妝、電器、伴手禮如明太子仙貝、小雞蛋糕）。" },
+      { time: "晚餐", desc: "完美句點的慶功宴！可選擇高級和牛燒肉或精緻壽司。" }
+    ],
+    tips: "這天完全不趕行程，為隔天搭機做體力調節與行李打包。"
+  },
+  {
+    day: 10,
+    title: "滿載回憶，平安賦歸",
+    base: "福岡 (博多)",
+    transport: "計程車 (2台)",
+    ticket: "直接付現 / 刷卡",
+    routeMap: [{ name: "博多飯店", time: "計程車 15分" }, { name: "福岡機場", time: "飛機" }, { name: "溫暖的家" }],
+    mapPath: ['fukuoka'],
+    mapInfo: { distance: "約 5 km", duration: "約 15 分鐘", note: "市區輕鬆前往機場" },
+    activities: [
+      { time: "上午", desc: "睡到自然醒，飯店內享用悠閒早餐。" },
+      { time: "中午/下午", desc: "前往福岡機場。機場離市區極近，強烈建議帶長輩小孩直接分乘2台計程車去機場(單趟車程約 15-20分鐘)，剛好可分配行李，免搬行李轉車。" },
+      { time: "起飛", desc: "搭機返回溫暖的家。" }
+    ],
+    tips: "福岡機場國際線免稅店很好買，可提早抵達最後血拚。"
+  }
+];
+
+const ticketsInfo = [
+  {
+    title: "JR 北九州鐵路周遊券 (5日)",
+    desc: "必買核心票券。用於 Day 4 到 Day 8。涵蓋博多-別府、別府-博多-熊本、熊本-博多(新幹線)。",
+    users: "大人約 ¥15,000，兒童(6-11歲)半價 ¥7,500。建議提前在海外買。",
+    icon: <Train className="text-blue-500 w-6 h-6" />
+  },
+  {
+    title: "交通IC卡 (Suica / SUGOCA)",
+    desc: "用於不涵蓋在JR Pass內的地鐵、西鐵巴士、熊本路面電車。",
+    users: "兒童需購買記名兒童版IC卡(半價)。預先儲值約 ¥3,000/人。",
+    icon: <Ticket className="text-orange-500 w-6 h-6" />
+  },
+  {
+    title: "九州自然動物園 (含叢林巴士)",
+    desc: "可在別府站購買「巴士來回+門票+叢林巴士」套票。",
+    users: "大人約 ¥3,900，兒童約 ¥2,200 (依現場套票為準)。",
+    icon: <Camera className="text-green-600 w-6 h-6" />
+  },
+  {
+    title: "BOSS E・ZO FUKUOKA (teamLab)",
+    desc: "Day 8 行程。建議提前上網購買指定日期的門票。",
+    users: "大人 ¥2,400，兒童(15歲以下) ¥1,000。",
+    icon: <Sun className="text-purple-500 w-6 h-6" />
+  }
+];
+
+const budgetData = {
+  currencyRate: 0.22,
+  pax: { adults: 3, kids: 2 },
+  items: [
+    { category: "✈️ 機票 (傳統航空估計)", jpyPerAdult: 80000, jpyPerKid: 65000, note: "暑假旺季預估" },
+    { category: "🏨 住宿 (9晚，2間房或包棟)", totalJpy: 350000, note: "估算：雙人房+三人房。若選擇民宿可更低。" },
+    { category: "🎫 交通：JR北九州 5日券", jpyPerAdult: 15000, jpyPerKid: 7500, note: "3大2小" },
+    { category: "🚌 當地交通與計程車", totalJpy: 40000, note: "含Suica儲值、機場2台計程車接送、短程計程車。" },
+    { category: "🎟️ 門票與活動", totalJpy: 45000, note: "動物園、teamLab、水族館、熊本城等。" },
+    { category: "🍱 餐飲與點心", totalJpy: 180000, note: "每日每人約 4,000 日圓 (扣除溫泉飯店晚餐)。" }
+  ]
+};
+
+// ==========================================
+// 🎨 UI 元件區塊 (Components Section) 🎨
+// ==========================================
+
+const TabButton = ({ active, onClick, icon, label }) => (
+  <button
+    onClick={onClick}
+    className={`flex items-center gap-2 px-4 py-3 font-medium text-sm sm:text-base whitespace-nowrap transition-colors border-b-2 ${
+      active 
+        ? 'border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400' 
+        : 'border-transparent text-gray-500 hover:text-blue-500 hover:border-blue-200 dark:text-slate-400 dark:hover:text-blue-300 dark:hover:border-blue-800'
+    }`}
+  >
+    {icon}
+    {label}
+  </button>
+);
+
+const RouteVisualizer = ({ locations, mapInfo }) => {
+  if (!locations || locations.length === 0) return null;
+  return (
+    <div className="bg-blue-50/50 dark:bg-slate-800/80 rounded-xl p-4 mb-4 border border-blue-100 dark:border-slate-700">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+        <div className="text-xs font-bold text-blue-800 dark:text-blue-400 flex items-center gap-1 uppercase tracking-wider">
+          <MapPin className="w-3 h-3" /> 當日細部路線與車程時間
+        </div>
+        {mapInfo && (
+          <div className="flex gap-3 text-xs font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-lg border border-blue-100 dark:border-slate-700 shadow-sm">
+            <span className="flex items-center gap-1"><Route className="w-3.5 h-3.5 text-blue-500" /> {mapInfo.distance}</span>
+            <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-orange-500" /> {mapInfo.duration}</span>
+          </div>
+        )}
+      </div>
+      <div className="flex flex-wrap items-center gap-y-6 gap-x-2">
+        {locations.map((step, idx) => (
+          <React.Fragment key={idx}>
+            <div className="flex items-center">
+              <span className="bg-white dark:bg-slate-700 text-gray-800 dark:text-slate-200 border border-blue-200 dark:border-slate-600 shadow-sm px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400 block"></span>
+                {step.name}
+              </span>
+            </div>
+            {step.time && (
+              <div className="flex flex-col items-center justify-center px-1 transform translate-y-[-2px]">
+                <span className="text-[10px] font-medium text-blue-600 dark:text-blue-300 bg-blue-100/50 dark:bg-slate-800 px-1.5 rounded-sm mb-0.5 whitespace-nowrap">
+                  {step.time}
+                </span>
+                <ArrowRight className="w-4 h-4 text-blue-300 dark:text-slate-500" />
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const DayCard = ({ dayData }) => {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden mb-4 transition-all">
+      <div 
+        className="p-4 sm:p-5 flex flex-col sm:flex-row sm:justify-between sm:items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700/50 gap-4"
+        onClick={() => setExpanded(!expanded)}
+      >
+        <div className="flex gap-4 items-center flex-1">
+          <div className="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 font-bold rounded-lg w-12 h-12 flex items-center justify-center flex-shrink-0">
+            D{dayData.day}
+          </div>
+          <div>
+            <h3 className="font-bold text-lg text-gray-800 dark:text-slate-100">{dayData.title}</h3>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm mt-1">
+              <span className="flex items-center gap-1 text-gray-500 dark:text-slate-400">
+                <MapPin className="w-4 h-4" />住宿: {dayData.base}
+              </span>
+              <span className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-medium bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 rounded">
+                <Car className="w-4 h-4" />交通: {dayData.transport}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto pl-16 sm:pl-0 border-t dark:border-slate-700 sm:border-t-0 pt-2 sm:pt-0">
+           <span className="text-xs font-semibold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20 px-2 py-1 rounded border border-orange-100 dark:border-orange-800/50">
+              {dayData.ticket}
+           </span>
+          {expanded ? <ChevronUp className="text-gray-400 dark:text-slate-500" /> : <ChevronDown className="text-gray-400 dark:text-slate-500" />}
+        </div>
+      </div>
+      
+      {expanded && (
+        <div className="px-5 pb-5 pt-3 border-t border-gray-50 dark:border-slate-700 bg-gray-50/30 dark:bg-slate-800/80">
+          <RouteVisualizer locations={dayData.routeMap} mapInfo={dayData.mapInfo} />
+          <div className="space-y-4">
+            {dayData.activities.map((act, idx) => (
+              <div key={idx} className="flex gap-3">
+                <div className="text-sm font-semibold text-blue-600 dark:text-blue-400 w-12 flex-shrink-0 pt-0.5">
+                  {act.time}
+                </div>
+                <div className="text-gray-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                  {act.desc}
+                </div>
+              </div>
+            ))}
+          </div>
+          {dayData.tips && (
+            <div className="mt-4 p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg flex gap-2 items-start border border-orange-100 dark:border-orange-800/30">
+              <Info className="w-5 h-5 text-orange-500 dark:text-orange-400 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-orange-800 dark:text-orange-200">{dayData.tips}</p>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const InteractiveTrajectoryMap = () => {
+  const [selectedDayIndex, setSelectedDayIndex] = useState(0);
+  const currentDayData = itinerary[selectedDayIndex];
+  const pathNodes = currentDayData.mapPath || [];
+
+  const generatePathD = () => {
+    if (pathNodes.length < 2) return "";
+    let d = "";
+    pathNodes.forEach((nodeId, index) => {
+      const node = mapNodes[nodeId];
+      if (index === 0) d += `M ${node.x} ${node.y} `;
+      else d += `L ${node.x} ${node.y} `;
+    });
+    return d;
+  };
+
+  return (
+    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden flex flex-col md:flex-row">
+      
+      <div className="w-full md:w-3/5 bg-[#eaf4fc] dark:bg-slate-900 p-2 sm:p-6 relative aspect-square md:aspect-auto md:min-h-[500px] border-b md:border-b-0 md:border-r border-gray-200 dark:border-slate-700 flex items-center justify-center overflow-hidden">
+        
+        <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur px-3 py-2 rounded-lg text-sm font-bold text-gray-700 dark:text-slate-200 shadow-sm z-20 flex flex-col gap-1">
+          <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 text-base">
+            <Navigation className="w-4 h-4" />
+            Day {currentDayData.day} 旅程軌跡
+          </div>
+          <div className="text-xs text-gray-500 dark:text-slate-400 font-normal">
+            住宿地點：{currentDayData.base}
+          </div>
+        </div>
+
+        {currentDayData.mapInfo && (
+          <div className="absolute bottom-4 left-4 sm:left-auto sm:right-4 bg-white/95 dark:bg-slate-800/95 backdrop-blur border border-blue-100 dark:border-slate-700 p-3 rounded-xl shadow-lg z-20 min-w-[160px]">
+            <div className="text-[10px] uppercase tracking-wider text-gray-400 dark:text-slate-500 font-bold mb-2">當日移動估計</div>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <div className="bg-blue-50 dark:bg-blue-900/30 p-1.5 rounded-md"><Route className="w-4 h-4 text-blue-600 dark:text-blue-400" /></div>
+                <div>
+                  <div className="text-xs text-gray-500 dark:text-slate-400">總里程</div>
+                  <div className="text-sm font-bold text-gray-800 dark:text-slate-200">{currentDayData.mapInfo.distance}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="bg-orange-50 dark:bg-orange-900/30 p-1.5 rounded-md"><Clock className="w-4 h-4 text-orange-600 dark:text-orange-400" /></div>
+                <div>
+                  <div className="text-xs text-gray-500 dark:text-slate-400">交通耗時</div>
+                  <div className="text-sm font-bold text-gray-800 dark:text-slate-200">{currentDayData.mapInfo.duration}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="relative w-full max-w-[450px] aspect-[4/5] transform scale-110 sm:scale-100">
+          
+          <svg className="absolute inset-0 w-full h-full drop-shadow-xl" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+            <path 
+              d="M38,10 L45,10 L52,15 L62,12 L75,18 L82,32 L85,45 L82,55 L75,65 L78,75 L70,88 L60,95 L50,92 L45,80 L35,85 L25,82 L15,75 L20,60 L25,55 L15,45 L18,35 L28,28 L32,18 Z" 
+              fill="currentColor" 
+              className="text-[#d8e8d2] dark:text-[#2c3e50] transition-colors duration-500"
+              stroke="rgba(0,0,0,0.05)" 
+              strokeWidth="0.5"
+            />
+            <path d="M45,28 L75,32 M35,45 L65,48 M40,65 L70,60" stroke="rgba(0,0,0,0.05)" strokeWidth="0.3" strokeDasharray="1,1" fill="none" className="dark:stroke-slate-600"/>
+          </svg>
+
+          <svg className="absolute inset-0 w-full h-full overflow-visible z-10" viewBox="0 0 100 100">
+            <defs>
+              <style>{`
+                @keyframes dashMap {
+                  from { stroke-dashoffset: 200; }
+                  to { stroke-dashoffset: 0; }
+                }
+                .map-line-anim {
+                  stroke-dasharray: 200;
+                  animation: dashMap 1.5s ease-out forwards;
+                }
+              `}</style>
+              <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#3b82f6" />
+                <stop offset="100%" stopColor="#8b5cf6" />
+              </linearGradient>
+            </defs>
+            
+            {pathNodes.length > 1 && (
+              <path 
+                key={`path-${selectedDayIndex}`}
+                d={generatePathD()} 
+                fill="none" 
+                stroke="url(#lineGradient)" 
+                strokeWidth="1.8" 
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="map-line-anim drop-shadow-md"
+              />
+            )}
+          </svg>
+
+          {Object.values(mapNodes).map((node) => {
+            const isActive = pathNodes.includes(node.id);
+            const isSingleStay = pathNodes.length === 1 && pathNodes[0] === node.id;
+            
+            return (
+              <div 
+                key={node.id} 
+                className="absolute transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20"
+                style={{ left: `${node.x}%`, top: `${node.y}%` }}
+              >
+                <div className={`relative flex items-center justify-center rounded-full border-2 transition-all duration-500 ${
+                  isActive 
+                    ? 'w-4 h-4 bg-blue-600 border-white dark:border-slate-800 scale-125 shadow-md' 
+                    : 'w-3 h-3 bg-gray-400 dark:bg-slate-500 border-white/50 dark:border-slate-700 opacity-60'
+                }`}>
+                  {isSingleStay && (
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-80 animate-ping"></span>
+                  )}
+                  {isActive && <div className="w-1.5 h-1.5 bg-white rounded-full"></div>}
+                </div>
+                <div className={`mt-1 px-2 py-0.5 rounded text-[10px] font-bold whitespace-nowrap transition-all duration-300 ${
+                  isActive 
+                    ? 'bg-gray-800 dark:bg-slate-100 text-white dark:text-slate-900 shadow-sm' 
+                    : 'text-gray-500 dark:text-slate-400 opacity-80'
+                }`}>
+                  {node.name}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="w-full md:w-2/5 p-4 sm:p-6 bg-white dark:bg-slate-800 flex flex-col max-h-[500px]">
+        <h3 className="font-bold text-gray-800 dark:text-slate-100 mb-4 flex items-center gap-2">
+          <Calendar className="w-5 h-5 text-blue-500" />
+          選擇天數查看路線
+        </h3>
+        
+        <div className="flex-1 overflow-y-auto pr-2 space-y-2 custom-scrollbar">
+          {itinerary.map((day, idx) => (
+            <button
+              key={idx}
+              onClick={() => setSelectedDayIndex(idx)}
+              className={`w-full text-left p-3 rounded-xl border transition-all ${
+                selectedDayIndex === idx 
+                  ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-300 dark:border-blue-500/50 shadow-sm' 
+                  : 'bg-white dark:bg-slate-800 border-gray-100 dark:border-slate-700 hover:border-blue-200 dark:hover:border-slate-600 hover:bg-gray-50 dark:hover:bg-slate-700/50'
+              }`}
+            >
+              <div className="flex items-center justify-between mb-1">
+                <span className={`font-bold ${selectedDayIndex === idx ? 'text-blue-700 dark:text-blue-300' : 'text-gray-700 dark:text-slate-300'}`}>
+                  Day {day.day}: {day.base}
+                </span>
+                {day.mapPath.length === 1 && (
+                   <span className="text-[10px] bg-gray-100 dark:bg-slate-700 text-gray-500 dark:text-slate-400 px-2 py-0.5 rounded-full border border-gray-200 dark:border-slate-600">市區/近郊</span>
+                )}
+                {day.mapPath.length > 1 && (
+                   <span className="text-[10px] bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300 px-2 py-0.5 rounded-full font-medium border border-blue-200 dark:border-blue-800">跨區移動</span>
+                )}
+              </div>
+              <p className="text-xs text-gray-500 dark:text-slate-400 line-clamp-1">{day.title}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+// ==========================================
+// 主程式 (Main App)
+// ==========================================
+function App() {
+  const [activeTab, setActiveTab] = useState('map'); 
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  const totalAdults = budgetData.pax.adults;
+  const totalKids = budgetData.pax.kids;
+  const totalJpy = budgetData.items.reduce((sum, item) => sum + (item.totalJpy || ((item.jpyPerAdult * totalAdults) + (item.jpyPerKid * totalKids))), 0);
+  const totalTwd = Math.round(totalJpy * budgetData.currencyRate);
+
+  return (
+    <div className={`min-h-screen font-sans selection:bg-blue-200 ${darkMode ? 'dark bg-slate-900' : 'bg-gray-50'}`}>
+      <header className="bg-gradient-to-r from-blue-700 to-teal-600 dark:from-slate-800 dark:to-slate-900 text-white p-6 sm:p-10 relative overflow-hidden">
+        <MapIcon className="absolute -right-10 -top-10 w-64 h-64 text-white opacity-10 transform rotate-12 pointer-events-none" />
+        
+        <button onClick={() => setDarkMode(!darkMode)} className="absolute top-6 right-6 p-2 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur transition-colors z-10">
+          {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+        </button>
+        <div className="max-w-5xl mx-auto mt-4 sm:mt-0 relative z-10">
+          <div className="inline-block px-3 py-1 bg-white/20 dark:bg-white/10 rounded-full text-xs font-semibold tracking-wider mb-4 border border-white/30 dark:border-white/10 backdrop-blur-sm">2026 SUMMER RESEARCH</div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold mb-3 shadow-sm">{overview.title}</h1>
+          <p className="text-lg text-blue-100 dark:text-blue-200 mb-6 font-medium">{overview.subtitle}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm mt-6 bg-white/10 dark:bg-black/20 p-4 rounded-xl backdrop-blur-sm">
+            <div className="flex items-center gap-2"><Calendar className="w-5 h-5 opacity-80" /><span>{overview.dates}</span></div>
+            <div className="flex items-center gap-2"><Users className="w-5 h-5 opacity-80" /><span>5人 (老中青三代)</span></div>
+            <div className="flex items-center gap-2"><Home className="w-5 h-5 opacity-80" /><span>3個住宿據點</span></div>
+            <div className="flex items-center gap-2"><Coffee className="w-5 h-5 opacity-80" /><span>{overview.pace}</span></div>
+          </div>
+        </div>
+      </header>
+
+      <div className="bg-white dark:bg-slate-800 border-b dark:border-slate-700 sticky top-0 z-20 shadow-sm overflow-x-auto no-scrollbar">
+        <div className="max-w-5xl mx-auto px-4 flex w-max sm:w-auto">
+          <TabButton active={activeTab === 'map'} onClick={() => setActiveTab('map')} icon={<Navigation className="w-5 h-5" />} label="🗺️ 九州移動軌跡" />
+          <TabButton active={activeTab === 'itinerary'} onClick={() => setActiveTab('itinerary')} icon={<Map className="w-5 h-5" />} label="每日行程預覽" />
+          <TabButton active={activeTab === 'bases'} onClick={() => setActiveTab('bases')} icon={<Home className="w-5 h-5" />} label="住宿飯店與民宿" />
+          <TabButton active={activeTab === 'tickets'} onClick={() => setActiveTab('tickets')} icon={<Ticket className="w-5 h-5" />} label="必備票券須知" />
+          <TabButton active={activeTab === 'budget'} onClick={() => setActiveTab('budget')} icon={<Calculator className="w-5 h-5" />} label="預估預算" />
+        </div>
+      </div>
+
+      <main className="max-w-5xl mx-auto p-4 sm:p-6 pb-20">
+        
+        {activeTab === 'map' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-slate-100 flex items-center gap-2">
+                <Navigation className="w-6 h-6 text-blue-600 dark:text-blue-400" /> 九州移動軌跡與距離估算
+              </h2>
+              <p className="text-gray-500 dark:text-slate-400 mt-1">
+                以九州地理輪廓繪製。點擊右側天數，查看當天的路線、<strong>總移動距離</strong>與<strong>交通時間</strong>。
+              </p>
+            </div>
+            <InteractiveTrajectoryMap />
+          </div>
+        )}
+
+        {activeTab === 'itinerary' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-slate-100 flex items-center gap-2"><Clock className="w-6 h-6 text-blue-600 dark:text-blue-400" /> 行程總覽與交通</h2>
+              <p className="text-gray-500 dark:text-slate-400 mt-1">點擊每日卡片展開詳細行程，並查看當日細部路線與車程時間。</p>
+            </div>
+            <div className="space-y-2">
+              {itinerary.map(day => <DayCard key={day.day} dayData={day} />)}
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'bases' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-slate-100 flex items-center gap-2 mb-2"><Home className="w-6 h-6 text-blue-600 dark:text-blue-400" /> 住宿策略規劃</h2>
+            <p className="text-gray-600 dark:text-slate-300 mb-6">不自駕最高原則：「火車站直結或步行3分鐘內」。新增經濟實惠民宿供參考。</p>
+            <div className="space-y-6">
+              {bases.map((base, idx) => (
+                <div key={base.id} className="bg-white dark:bg-slate-800 rounded-xl shadow-md border-t-4 border-blue-500 dark:border-blue-400 overflow-hidden">
+                  <div className="p-5 sm:p-6 bg-gradient-to-br from-white to-blue-50 dark:from-slate-800 dark:to-slate-800/80 border-b border-gray-100 dark:border-slate-700">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-xl font-bold text-blue-800 dark:text-blue-300">據點 {idx + 1}：{base.name}</h3>
+                      <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-xs font-bold px-3 py-1 rounded-full">{base.nights}</span>
+                    </div>
+                    <p className="text-gray-600 dark:text-slate-300 text-sm leading-relaxed">{base.description}</p>
+                  </div>
+                  <div className="p-5 sm:p-6">
+                    <h4 className="font-semibold text-gray-700 dark:text-slate-200 mb-4 text-sm uppercase tracking-wider flex items-center gap-2"><Home className="w-4 h-4" /> 推薦飯店 (便利首選)</h4>
+                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-6">
+                      {base.hotels.map((hotel, hIdx) => (
+                        <div key={hIdx} className="bg-gray-50 dark:bg-slate-700/50 border border-gray-200 dark:border-slate-600 rounded-lg p-4 hover:shadow-md transition-shadow">
+                          <h5 className="font-bold text-gray-800 dark:text-slate-100 mb-2">{hotel.name}</h5><p className="text-sm text-gray-600 dark:text-slate-300">{hotel.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <h4 className="font-semibold text-teal-700 dark:text-teal-400 mb-4 text-sm uppercase tracking-wider flex items-center gap-2"><Coffee className="w-4 h-4" /> 經濟實惠民宿 / 公寓 (空間較大)</h4>
+                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                      {base.guesthouses.map((gh, gIdx) => (
+                        <div key={gIdx} className="bg-teal-50/50 dark:bg-teal-900/20 border border-teal-100 dark:border-teal-800/50 rounded-lg p-4 hover:shadow-md transition-shadow">
+                          <h5 className="font-bold text-teal-800 dark:text-teal-300 mb-2">{gh.name}</h5><p className="text-sm text-teal-700 dark:text-teal-100/70">{gh.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'tickets' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8">
+            <section>
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-slate-100 flex items-center gap-2 mb-6"><Ticket className="w-6 h-6 text-blue-600 dark:text-blue-400" /> 建議購買票券清單</h2>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {ticketsInfo.map((ticket, idx) => (
+                  <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 flex gap-4 items-start">
+                    <div className="p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">{ticket.icon}</div>
+                    <div>
+                      <h3 className="font-bold text-gray-800 dark:text-slate-100 text-lg mb-1">{ticket.title}</h3><p className="text-gray-600 dark:text-slate-300 text-sm mb-2">{ticket.desc}</p><p className="text-xs text-blue-600 dark:text-blue-400 font-medium bg-blue-50 dark:bg-blue-900/30 inline-block px-2 py-1 rounded">{ticket.users}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+            <section className="bg-orange-50 dark:bg-orange-900/10 border border-orange-200 dark:border-orange-800/50 rounded-xl p-6">
+              <h2 className="text-xl font-bold text-orange-800 dark:text-orange-400 flex items-center gap-2 mb-4"><Sun className="w-6 h-6" /> 7月夏日攜老扶幼 關鍵注意事項</h2>
+              <ul className="space-y-3 text-orange-900 dark:text-orange-200/90 text-sm sm:text-base">
+                <li className="flex gap-2"><span className="font-bold">•</span><span><strong>行李黑貓宅急便 (Ta-Q-Bin)：</strong> 在飯店櫃台填寫單據，可將大行李寄到下下間飯店。Day3在福岡寄出，輕裝去別府，行李會在Day6的熊本等您。</span></li>
+                <li className="flex gap-2"><span className="font-bold">•</span><span><strong>防暑對策：</strong> 7月九州十分悶熱。務必隨身攜帶水壺、涼感頸圈。每天中午盡量安排在冷氣房內。</span></li>
+                <li className="flex gap-2"><span className="font-bold">•</span><span><strong>計程車與行李：</strong> 由於有3大2小共5個行李箱，加上5名乘客，<strong>請直接叫2台計程車</strong>分攤。起步價不高，能有效保存長輩與小孩的體力。</span></li>
+              </ul>
+            </section>
+          </div>
+        )}
+
+        {activeTab === 'budget' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-slate-100 flex items-center gap-2 mb-2"><Wallet className="w-6 h-6 text-blue-600 dark:text-blue-400" /> 旅費預算粗估</h2>
+            <p className="text-gray-500 dark:text-slate-400 mb-6">為 {totalAdults}大(含長輩) + {totalKids}小 的 10天9夜 預估。(日圓匯率 {budgetData.currencyRate})</p>
+            <div className="bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-800 dark:to-slate-800 rounded-2xl p-6 text-white mb-8 shadow-lg flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div><p className="text-blue-200 font-medium mb-1">{totalAdults + totalKids}人總預算預估 (含機票住宿)</p><div className="text-4xl font-extrabold flex items-baseline gap-2">NT$ {totalTwd.toLocaleString()}<span className="text-lg font-medium text-blue-200 font-normal">TWD</span></div></div>
+              <div className="text-right"><p className="text-blue-200 text-sm">約合日圓</p><p className="text-xl font-bold opacity-90">¥ {totalJpy.toLocaleString()}</p></div>
+            </div>
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-gray-50 dark:bg-slate-700/50 text-gray-600 dark:text-slate-300 text-sm uppercase tracking-wider border-b border-gray-200 dark:border-slate-700">
+                      <th className="p-4 font-semibold w-1/3">項目</th><th className="p-4 font-semibold text-right">日圓 (JPY)</th><th className="p-4 font-semibold text-right border-l border-gray-200 dark:border-slate-700">台幣 (TWD)</th><th className="p-4 font-semibold">備註說明</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 dark:divide-slate-700">
+                    {budgetData.items.map((item, idx) => {
+                      const itemJpyTotal = item.totalJpy || ((item.jpyPerAdult * totalAdults) + (item.jpyPerKid * totalKids));
+                      const itemTwdTotal = Math.round(itemJpyTotal * budgetData.currencyRate);
+                      return (
+                        <tr key={idx} className="hover:bg-gray-50/50 dark:hover:bg-slate-700/30">
+                          <td className="p-4 font-medium text-gray-800 dark:text-slate-200">{item.category}</td>
+                          <td className="p-4 font-bold text-gray-700 dark:text-slate-300 text-right whitespace-nowrap">¥ {itemJpyTotal.toLocaleString()}{!item.totalJpy && (<div className="text-xs font-normal text-gray-400 dark:text-slate-500 mt-1">(大:¥{item.jpyPerAdult.toLocaleString()} / 小:¥{item.jpyPerKid.toLocaleString()})</div>)}</td>
+                          <td className="p-4 font-bold text-blue-600 dark:text-blue-400 text-right whitespace-nowrap border-l border-gray-100 dark:border-slate-700 bg-blue-50/30 dark:bg-slate-800/50">NT$ {itemTwdTotal.toLocaleString()}</td>
+                          <td className="p-4 text-sm text-gray-500 dark:text-slate-400 min-w-[200px]">{item.note}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
+    createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
