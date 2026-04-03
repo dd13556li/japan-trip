@@ -18,27 +18,15 @@
 <body>
   <div id="root"></div>
 
-  <script type="importmap">
-  {
-    "imports": {
-      "react": "https://esm.sh/react@18",
-      "react/jsx-runtime": "https://esm.sh/react@18/jsx-runtime",
-      "react-dom": "https://esm.sh/react-dom@18",
-      "react-dom/client": "https://esm.sh/react-dom@18/client",
-      "lucide-react": "https://esm.sh/lucide-react@latest"
-    }
-  }
-  </script>
-
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <script type="text/babel" data-type="module">
-    import { createRoot } from 'react-dom/client';
-import React, { useState, useEffect } from 'react';
-import { 
-  Map, Calendar, Train, Home, Ticket, Info, MapPin, 
+    import { createRoot } from 'https://esm.sh/react-dom@18/client';
+import React, { useState, useEffect } from 'https://esm.sh/react@18';
+import {
+  Map, Calendar, Train, Home, Ticket, Info, MapPin,
   Clock, Users, Sun, Coffee, Camera, ChevronDown, ChevronUp, Calculator, Wallet, Car, Moon, ArrowRight, Navigation, Map as MapIcon, Route
-} from 'lucide-react';
+} from 'https://esm.sh/lucide-react@latest';
 
 // ==========================================
 // 💡 資料區塊 (Data Section) 💡
