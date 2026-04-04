@@ -133,7 +133,16 @@ const itinerary = [
       { name: "九州橫斷巴士 / 山彥號", category: "交通", desc: "從熊本機場直達別府或由布院的長途巴士，途經阿蘇山麓，沿途可欣賞大分縣綠意盎然的山景。全程約 2–2.5 小時，班次有限。", tips: "建議出發前在巴士官網查好時刻表並事先購票，暑假旺季座位緊張。" },
       { name: "別府溫泉", category: "溫泉", desc: "日本泉質最多樣的溫泉城市，每日湧出量全國第一。街道上隨處可見裊裊白煙，旅館各具特色。建議第一晚直接在飯店泡湯，消除長途飛行疲勞。", tips: "若入住杉乃井大飯店，棚湯、海景露天溫泉等需分時段，入住後先索取泡湯時刻表。" },
       { name: "由布院温泉（替代方案）", category: "溫泉", desc: "由布岳山腳下的靜謐溫泉小鎮，以金鱗湖晨霧與精緻伴手禮店聞名。街道平坦，老中青皆宜散步購物，氛圍比別府更悠閒浪漫。", tips: "金鱗湖早晨霧氣最美，建議早起前往，避開日間旅遊人潮。湯之坪街道飲食選擇豐富，留意店家公休日。" }
-    ]
+    ],
+    foodGuide: {
+      localSnacks: ["地獄蒸溫泉蛋（地獄蒸し卵）", "別府冷麵（冷麺）", "豚骨拉麵", "竹輪天婦羅"],
+      localProducts: ["別府溫泉饅頭", "由布院牛奶布丁", "竹工藝品", "大分柚子加工品"],
+      nearbyRestaurants: [
+        { name: "北浜地獄蒸工房（Jigoku Mushi Kobo）", specialty: "地獄蒸料理：蒸蝦、蒸蔬菜、蒸溫泉蛋" },
+        { name: "六盛（Rokusei）", specialty: "大分鄉土料理：關鯵刺身、烤雞肉" },
+        { name: "由布院ゆふいん山椒の木", specialty: "由布院懷石料理，使用當地食材" }
+      ]
+    }
   },
   {
     day: 2,
@@ -153,7 +162,16 @@ const itinerary = [
       { name: "別府地獄 — 海地獄 & 灶地獄", category: "自然奇景", desc: "「別府地獄巡禮」是別府最具代表性的觀光，共 8 處各具特色的天然熱泥池與溫泉池。海地獄呈鮮豔鈷藍色，灶地獄則有多個造型泥浴噴發表演，小朋友可享受泉水蒸蛋與足湯體驗。", tips: "推薦購買 7 地獄共通套票（約 ¥2,200 大人）更划算。參觀時間至少需 3–4 小時，建議早上開園即入場。夏季高溫加上蒸氣，請做好防曬補水。" },
       { name: "九州自然動物園（アフリカンサファリ）", category: "親子體驗", desc: "日本規模最大的野生動物園之一，特色是「叢林巴士」服務——可直接在開放式巴士上近距離餵食獅子、花豹、熊等，刺激感十足，是小朋友的夢幻體驗。", tips: "叢林巴士極度熱門，建議提前 1 個月以上網路預約。抵達後先確認叢林巴士時刻，再安排其他區域參觀。請勿將手或食物伸出車外。" },
       { name: "杉乃井大飯店 棚湯 & 水上樂園", category: "溫泉設施", desc: "若入住杉乃井大飯店，其「棚湯」半露天溫泉泳池群可俯瞰別府灣，尤其入夜後燈光點點、景色壯麗。館內水上樂園「AQUA BEAT」設有水滑梯，小朋友玩到不想走。", tips: "棚湯分男湯、女湯，時段限定入場，入住後務必確認當日開放時間。水上樂園需另行購票，請攜帶泳衣。" }
-    ]
+    ],
+    foodGuide: {
+      localSnacks: ["地獄蒸料理（蒸蝦、蒸野菜）", "別府冷麵", "別府速食炸雞（とり天）", "地獄泡芙"],
+      localProducts: ["別府溫泉饅頭（各口味禮盒）", "干物（關鯵魚乾）", "別府竹工藝小物", "九州甘口醬油"],
+      nearbyRestaurants: [
+        { name: "地獄蒸工房 鉄輪", specialty: "自助式地獄蒸：新鮮食材放入蒸籠用溫泉蒸熟" },
+        { name: "冨士一拉麵（富士一）", specialty: "別府豚骨清湯拉麵，在地人氣名店" },
+        { name: "友永豆腐店", specialty: "手工豆腐料理，使用阿蘇山泉水製作" }
+      ]
+    }
   },
   {
     day: 3,
@@ -175,7 +193,16 @@ const itinerary = [
       { name: "JR 博多城 — 燕林廣場", category: "觀景體驗", desc: "博多車站頂樓的免費開放展望廣場，可俯瞰整個博多市區與進出站的新幹線列車。鐵道迷必訪，小朋友可以近距離看列車呼嘯而過，驚喜感十足。", tips: "免費入場。最佳觀車時段是新幹線班次集中的上下午尖峰時間，可搭配電梯直達屋頂。" },
       { name: "LaLaport 福岡 — 1:1 鋼彈立像", category: "潮流景點", desc: "日本第三座等比例（約 24 公尺）鋼彈立像，2022 年開幕，夜晚有精彩燈光秀。商場同層設有 GUNDAM SIDE-F 旗艦店，各式鋼彈模型、周邊應有盡有，購物一站搞定。", tips: "鋼彈立像全天可觀賞，特殊燈光演出需查看官網時刻。GUNDAM SIDE-F 熱門商品常賣斷，建議盡早前往選購。" },
       { name: "博多運河城 (Canal City Hakata)", category: "購物餐飲", desc: "博多市中心最知名的購物娛樂複合設施，擁有露天運河與噴水池，每天定時上演水舞秀。商場涵蓋餐廳、服飾、藥妝、遊戲廳，傍晚散步極宜。", tips: "水舞秀定時演出（通常每小時一次），表演時可在運河旁找好位置觀賞。夏季有冷氣的室內走廊，是避暑逛街的好選擇。" }
-    ]
+    ],
+    foodGuide: {
+      localSnacks: ["博多豚骨拉麵", "博多串燒（博多串焼き）", "明太子茶泡飯", "博多牛腸鍋（もつ鍋）"],
+      localProducts: ["辛子明太子（博多名產）", "博多通りもん（月餅風甜饅頭）", "博多人形（陶瓷工藝品）", "鶏卵素麵（黃色細麵甜點）"],
+      nearbyRestaurants: [
+        { name: "一蘭拉麵 博多店", specialty: "獨立隔間豚骨拉麵，博多發祥地" },
+        { name: "元祖長浜屋（元祖長浜ラーメン）", specialty: "博多最古老的長浜拉麵，可免費追加麵條" },
+        { name: "博多車站空天 (Kooten) 美食街", specialty: "聚集博多各式名店，包含烤雞、明太子料理" }
+      ]
+    }
   },
   {
     day: 4,
@@ -195,7 +222,16 @@ const itinerary = [
     spots: [
       { name: "海之中道海洋世界 (マリンワールド海の中道)", category: "親子景點", desc: "九州最大的水族館，以全室內冷氣環境著稱，盛夏出遊的最佳選擇。館內有大型洄游魚缸、企鵝區、水母展示，以及每日多場海豚秀與海獅表演，老少咸宜。", tips: "海豚秀座位有限，入館後先確認當日表演時刻並提前就座。建議使用 JR Pass 搭乘鹿兒島本線至西戶崎站，再步行或轉小火車前往。" },
       { name: "博多運河城 — 水舞秀", category: "購物餐飲", desc: "傍晚回市區後，博多運河城是覓食與散步的首選。開放式運河每小時有定時水舞秀，搭配音樂與燈光，夏夜氛圍迷人。B1–5F 集合餐廳、伴手禮與藥妝。", tips: "水舞秀在戶外運河廣場進行，夏日傍晚涼爽宜人。建議晚餐選在水舞秀前後，邊用餐邊欣賞表演。" }
-    ]
+    ],
+    foodGuide: {
+      localSnacks: ["水族館景觀餐廳海鮮丼", "博多天婦羅（磯揚げ）", "博多屋台牛腸煮", "夏季限定！博多雪糕冰淇淋"],
+      localProducts: ["辛子明太子（各品牌試吃選購）", "博多通りもん", "海之中道限定紀念品", "博多屋台調味料組合"],
+      nearbyRestaurants: [
+        { name: "海之中道景觀餐廳 Ocean Side Cafe", specialty: "俯瞰大海的海鮮料理與義大利麵" },
+        { name: "博多運河城 拉麵競技場", specialty: "集合九州各地名店拉麵，可逐一試吃比較" },
+        { name: "博多もつ鍋 おおやま 博多駅前店", specialty: "博多招牌牛腸鍋，使用新鮮小腸與蔬菜" }
+      ]
+    }
   },
   {
     day: 5,
@@ -215,7 +251,16 @@ const itinerary = [
       { name: "太宰府天滿宮", category: "文化古蹟", desc: "全日本學問之神菅原道真的長眠之地，也是九州最具代表性的神社之一。本殿前有著名的「飛梅」樹，參道兩側梅枝餅老舖飄香，步行約 10 分鐘即可抵達本殿，長輩無負擔。", tips: "夏季氣溫較高，建議中午前參拜完畢。参道上的「梅枝餅」必嚐，現烤外脆內軟。西鐵太宰府站步行 5 分鐘可達，不需轉乘。" },
       { name: "BOSS E・ZO FUKUOKA — teamLab Forest", category: "沉浸藝術", desc: "位於PayPay巨蛋旁的複合娛樂設施，teamLab Forest 是全室內的沉浸式互動數位藝術展，以「森林」為主題，燈光互動作品適合全家探索，避開戶外酷暑的絕佳選擇。", tips: "teamLab Forest 需提前在官網購票，旺季門票可能售罄。參觀時間建議預留 90 分鐘以上，穿著深色服裝可讓光效更突出。" },
       { name: "天神地下街", category: "購物", desc: "福岡最大的地下購物街，全長約 590 公尺，串聯多棟百貨公司地下層，集結藥妝、服飾、餐廳與甜點。全程冷氣，夏日血拼天堂，雨天也完全不受影響。", tips: "天神地下街有多個出入口，建議下車前確認使用哪個出口最接近目的地，以免在地下商場迷路。" }
-    ]
+    ],
+    foodGuide: {
+      localSnacks: ["太宰府梅枝餅（現烤外脆內軟）", "福岡牛舌定食", "天神小吃：可樂餅、章魚燒", "博多名物：辣味明太子茶泡飯"],
+      localProducts: ["太宰府天滿宮梅枝餅禮盒", "太宰府限定御守（開運學業）", "天神 SOLARIA 百貨伴手禮", "博多辛子明太子（多品牌）"],
+      nearbyRestaurants: [
+        { name: "寺田屋 太宰府參道店", specialty: "太宰府最老字號梅枝餅，現烤熱食" },
+        { name: "天神ビストロ熊（BISTRO KUMA）", specialty: "福岡牛舌鐵板料理，深受家庭喜愛" },
+        { name: "天神地下街 名店街", specialty: "聚集福岡各式甜點、咖啡廳與輕食" }
+      ]
+    }
   },
   {
     day: 6,
@@ -235,7 +280,16 @@ const itinerary = [
     spots: [
       { name: "熊本城", category: "文化古蹟", desc: "日本三大名城之一，以雄偉的武者返石垣工法著稱。2016 年熊本地震後重建，現已開放「特別公開」參觀通道，透過空中步道可近距離觀察石垣修復現場，具有極高的歷史與教育意義。", tips: "熊本城設有無障礙空中步道，嬰兒推車可全程進入，長輩體力消耗較小。建議購買城彩苑聯票，同時可遊覽歷史文化館。夏日建議上午參觀，下午熱度驟升。" },
       { name: "桜の馬場 城彩苑", category: "飲食文化", desc: "位於熊本城腳下的復古文化商業街，仿江戶時代風格，集合熊本名物餐廳、伴手禮與熊本熊周邊商品。「湧々座」為免費的歷史體驗館，可試穿武士甲冑拍照。", tips: "太平燕（熊本特色雞蛋湯麵）是城彩苑必嚐名物，多家店家各有特色口味。伴手禮區有各式熊本熊商品，是採購禮品的好地方。" }
-    ]
+    ],
+    foodGuide: {
+      localSnacks: ["太平燕（熊本名物雞蛋湯麵）", "辛子蓮根（辣味蓮藕）", "馬刺（新鮮馬肉生魚片）", "黑馬油豚骨拉麵"],
+      localProducts: ["辛子蓮根禮盒", "熊本熊限定零食組合", "馬肉香腸（馬肉加工品）", "熊本城彩苑限定伴手禮"],
+      nearbyRestaurants: [
+        { name: "城彩苑 路庵（Michian）", specialty: "熊本太平燕與鄉土料理，城彩苑內" },
+        { name: "黑亭（こくてい）", specialty: "熊本發祥黑豚骨拉麵，醬油底濃郁" },
+        { name: "勝烈亭 上通本店", specialty: "熊本知名豬排定食，外酥內嫩" }
+      ]
+    }
   },
   {
     day: 7,
@@ -256,7 +310,16 @@ const itinerary = [
       { name: "阿蘇男孩號 (あそぼーい！)", category: "觀光列車", desc: "JR 九州最受歡迎的親子觀光列車，車身繪有可愛柴犬圖案。車廂設計非常特別：設有兒童木球池、白色沙發座席、全景展望車廂，以及可在車上購買的鐵路便當與限定甜點。從熊本到阿蘇約 80 分鐘。", tips: "全車對號座，極度熱門，務必在確認行程後立即至 JR 九州官網或 Klook 付費劃位（約 ¥1,000/人），1 個月前開放預約，常常快速售罄。" },
       { name: "草千里濱 (草千里ヶ浜)", category: "自然景觀", desc: "位於阿蘇中岳山腳的寬廣火山草原，直徑約 1 公里的圓形窪地，兩座圓形湖點綴其中，馬匹自由漫步其間。海拔約 1,140 公尺，夏日氣溫涼爽宜人，是難得的高原避暑勝地。", tips: "阿蘇火山依火山活動狀況可能限制參觀範圍，出發前請至阿蘇山公式網站確認火山警戒等級。草千里提供馬匹騎乘體驗（需現場購票），是小朋友難忘的回憶。" },
       { name: "阿蘇神社（周邊）", category: "文化古蹟", desc: "位於阿蘇市的千年古社，以「楼門」建築著名，也是阿蘇地區的信仰中心。2016 年地震導致樓門倒塌，目前已重建完工，象徵阿蘇的復甦，具有特殊的參觀意義。", tips: "若時間允許，可在阿蘇車站附近的「阿蘇神社」周邊走走。神社前的門前町商店街有阿蘇牛乳冰淇淋與地方土產。" }
-    ]
+    ],
+    foodGuide: {
+      localSnacks: ["阿蘇牛乳冰淇淋（濃醇香）", "赤牛丼（阿蘇和牛蓋飯）", "高菜飯糰（阿蘇名物）", "阿蘇溶岩燒（炭火烤肉）"],
+      localProducts: ["阿蘇牛乳（新鮮低溫殺菌）", "赤牛加工品（燒肉醬、牛肉乾）", "阿蘇產高菜漬物", "阿蘇山限定紀念品"],
+      nearbyRestaurants: [
+        { name: "草千里レストハウス（草千里休憩所）", specialty: "草千里高原景觀餐廳，赤牛丼與軟冰淇淋" },
+        { name: "田楽の里（でんがくのさと）", specialty: "阿蘇傳統田樂料理：味噌烤豆腐與烤蔬菜" },
+        { name: "阿蘇神社門前商店街 茶屋", specialty: "阿蘇牛乳配點心，古早味下午茶" }
+      ]
+    }
   },
   {
     day: 8,
@@ -276,7 +339,16 @@ const itinerary = [
       { name: "水前寺成趣園", category: "日式庭園", desc: "建於江戶時代的迴游式日本庭園，以人工再現東海道五十三次的縮景風光，園中湧出的阿蘇伏流水清澈透明，大量錦鯉悠游，是熊本市區最具代表性的名勝之一。庭園地勢平坦，推車與長輩步行均無障礙。", tips: "園內有飼料販售機，購買飼料讓小朋友餵魚是必體驗。建議平日上午前往避開人潮，清晨的晨霧與庭園相映成趣。" },
       { name: "熊本熊廣場 (Kumamon Square)", category: "吉祥物體驗", desc: "熊本熊部長的「辦公室」，每週固定時段有熊本熊出現表演互動節目，包括跳舞、搞笑橋段與合照時間，完全免費入場觀賞，是全家的歡樂時光。", tips: "熊本熊出沒時間不固定，務必提前至官網確認當週表演時刻表。廣場本身免費參觀，周邊有熊本熊官方商品販售，限定商品建議早到搶購。" },
       { name: "上通・下通商店街", category: "購物", desc: "熊本市中心最繁華的室內商店街，全程有遮雨棚遮蔽日曬雨淋，集結藥妝、服飾、甜點與各式土產。鶴屋百貨、TSURUYA 超市等知名店鋪均在此，是採購伴手禮的最佳地點。", tips: "藥妝推薦：鶴屋百貨 B1 美食區有熊本限定口味零食。馬肉相關食品（馬刺、馬肉香腸）是熊本獨有的伴手禮，建議在這裡採購冷藏帶回。" }
-    ]
+    ],
+    foodGuide: {
+      localSnacks: ["辛子蓮根（熊本必吃）", "馬刺拼盤（五種部位）", "熊本熊造型和菓子", "太平燕（熊本市名物）"],
+      localProducts: ["鶴屋百貨 B1 熊本限定零食", "熊本熊官方商品（文具、玩具）", "熊本馬油護手霜", "上通藥妝店各式美妝"],
+      nearbyRestaurants: [
+        { name: "天外天 本店", specialty: "熊本辛子蓮根老字號，炸蓮藕套餐" },
+        { name: "馬桜（うまざくら）上通本店", specialty: "熊本馬肉料理：馬刺、馬肉壽司、馬肉鍋" },
+        { name: "丸惣 甜點咖啡廳", specialty: "熊本熊主題甜點、抹茶刨冰，附近觀光客必訪" }
+      ]
+    }
   },
   {
     day: 9,
@@ -324,7 +396,16 @@ const itinerary = [
           { name: "上通・下通商店街（最終採購）", category: "購物", desc: "旅程最後的伴手禮衝刺時機。若尚有未買的藥妝、零食或熊本熊周邊商品，上下通商店街是最後採購的最佳選擇，步行可達且攤位密集。", tips: "打包日行程輕鬆，可利用早上空閒時間做最後的購物清單核對，確認每位家人的需求，避免遺漏。部分店家週一公休，建議事先確認。" }
         ]
       }
-    ]
+    ],
+    foodGuide: {
+      localSnacks: ["黑毛和牛燒肉（當日慶功必選）", "勝烈亭豬排（熊本人氣定食）", "馬刺（旅程最後品嚐）", "熊本限定抹茶冰淇淋"],
+      localProducts: ["イオンモール熊本 藥妝最終比價", "熊本熊限定商品（最後補貨）", "辛子蓮根真空包（可帶上飛機）", "九州名產綜合禮盒"],
+      nearbyRestaurants: [
+        { name: "勝烈亭 上通本店", specialty: "厚切豬排定食，熊本人的日常美食" },
+        { name: "黑毛和牛 焼肉 肉の石田屋", specialty: "熊本黑毛和牛燒肉，旅程慶功首選" },
+        { name: "イオンモール熊本 美食廣場", specialty: "各式日式料理、迴轉壽司，方便全家用餐" }
+      ]
+    }
   },
   {
     day: 10,
@@ -342,7 +423,16 @@ const itinerary = [
     ],
     spots: [
       { name: "熊本機場新航廈 (阿蘇くまもと空港)", category: "機場設施", desc: "2023 年啟用的全新航廈，以阿蘇大自然為設計靈感，室內木構造大廳氣勢磅礴，被評選為日本最美機場之一。航廈內有美食廣場、熊本名物土產專區、免稅品店與觀景台，值得預留時間慢慢逛。", tips: "建議提早 2.5–3 小時抵達機場，預留充裕時間辦理退稅（需備妥護照與購物收據）、寄送超重行李與最後免稅品採購。熊本機場免稅店的人氣馬油系列保養品常被掃空，請盡早前往。" }
-    ]
+    ],
+    foodGuide: {
+      localSnacks: ["機場限定辛子蓮根便當", "阿蘇ミルクキッチン牛乳冰淇淋", "熊本名物太平燕（機場內可外帶）", "搭機前輕食：熊本炸雞定食"],
+      localProducts: ["機場免稅店 馬油保養品系列（搶手必買）", "熊本熊機場限定商品", "辛子蓮根禮盒（真空包可帶回）", "熊本銘菓：陣太鼓（甜點伴手禮）"],
+      nearbyRestaurants: [
+        { name: "熊本機場 美食廣場（フードコート）", specialty: "熊本各式名物：太平燕、辛子蓮根、豬排" },
+        { name: "機場 2F レストラン", specialty: "阿蘇牛肉料理與熊本鄉土料理" },
+        { name: "機場土產區 café corner", specialty: "輕食、甜點與熊本限定咖啡飲品" }
+      ]
+    }
   }
 ];
 
@@ -568,9 +658,62 @@ const ScenicSpotCard = ({ spot }) => {
   );
 };
 
+const FoodGuidePanel = ({ foodGuide }) => {
+  if (!foodGuide) return (
+    <div className="text-center py-12 text-gray-400 dark:text-slate-500">
+      <span className="text-4xl mb-2 block">🍽️</span>
+      <p className="text-sm">此日無美食資料</p>
+    </div>
+  );
+  return (
+    <div className="space-y-4">
+      {/* 推薦特色小吃 */}
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm p-4 sm:p-5">
+        <h4 className="font-bold text-gray-800 dark:text-slate-100 text-base mb-3 flex items-center gap-2">
+          <span>🍽️</span> 推薦特色小吃
+        </h4>
+        <div className="flex flex-wrap gap-2">
+          {foodGuide.localSnacks.map((snack, idx) => (
+            <span key={idx} className="bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border border-rose-100 dark:border-rose-800/40 text-xs font-medium px-3 py-1.5 rounded-full">{snack}</span>
+          ))}
+        </div>
+      </div>
+      {/* 必買當地特產 */}
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm p-4 sm:p-5">
+        <h4 className="font-bold text-gray-800 dark:text-slate-100 text-base mb-3 flex items-center gap-2">
+          <span>🛍️</span> 必買當地特產
+        </h4>
+        <div className="flex flex-wrap gap-2">
+          {foodGuide.localProducts.map((product, idx) => (
+            <span key={idx} className="bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border border-amber-100 dark:border-amber-800/40 text-xs font-medium px-3 py-1.5 rounded-full">{product}</span>
+          ))}
+        </div>
+      </div>
+      {/* 附近有名美食餐廳 */}
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm p-4 sm:p-5">
+        <h4 className="font-bold text-gray-800 dark:text-slate-100 text-base mb-3 flex items-center gap-2">
+          <span>🍴</span> 附近有名美食餐廳
+        </h4>
+        <div className="space-y-2">
+          {foodGuide.nearbyRestaurants.map((restaurant, idx) => (
+            <div key={idx} className="flex items-start gap-3 bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800/30 rounded-lg p-3">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 text-xs font-bold flex items-center justify-center">{idx + 1}</span>
+              <div>
+                <p className="text-sm font-semibold text-gray-800 dark:text-slate-100">{restaurant.name}</p>
+                <p className="text-xs text-green-700 dark:text-green-300 mt-0.5">{restaurant.specialty}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ScenicIntroTab = () => {
   const [selectedDayIdx, setSelectedDayIdx] = useState(0);
   const [selectedPlan, setSelectedPlan] = useState(0);
+  const [contentTab, setContentTab] = useState('scenic');
 
   const currentDay = itinerary[selectedDayIdx];
   const hasPlans = !!currentDay.plans;
@@ -578,7 +721,7 @@ const ScenicIntroTab = () => {
     ? (currentDay.plans[selectedPlan]?.spots || [])
     : (currentDay.spots || []);
 
-  const handleDayClick = (idx) => { setSelectedDayIdx(idx); setSelectedPlan(0); };
+  const handleDayClick = (idx) => { setSelectedDayIdx(idx); setSelectedPlan(0); setContentTab('scenic'); };
 
   return (
     <div className="flex flex-col md:flex-row gap-4 animate-in fade-in duration-500">
@@ -606,30 +749,52 @@ const ScenicIntroTab = () => {
           </div>
         </div>
 
-        {/* A/B plan toggle for Day 9 */}
-        {hasPlans && (
-          <div className="flex gap-2 mb-4 p-1 bg-gray-100 dark:bg-slate-700 rounded-xl">
-            {currentDay.plans.map((plan, idx) => (
-              <button
-                key={idx}
-                onClick={() => setSelectedPlan(idx)}
-                className={`flex-1 text-sm font-semibold px-3 py-2 rounded-lg transition-all ${selectedPlan === idx ? 'bg-white dark:bg-slate-600 shadow text-blue-600 dark:text-blue-300' : 'text-gray-500 dark:text-slate-400 hover:text-blue-500'}`}
-              >
-                {plan.label}
-              </button>
-            ))}
-          </div>
-        )}
+        {/* Scenic / Food tab toggle */}
+        <div className="flex gap-2 mb-4 p-1 bg-gray-100 dark:bg-slate-700 rounded-xl">
+          <button
+            onClick={() => setContentTab('scenic')}
+            className={`flex-1 text-sm font-semibold px-3 py-2 rounded-lg transition-all flex items-center justify-center gap-1.5 ${contentTab === 'scenic' ? 'bg-white dark:bg-slate-600 shadow text-blue-600 dark:text-blue-300' : 'text-gray-500 dark:text-slate-400 hover:text-blue-500'}`}
+          >
+            🏔️ 景點介紹
+          </button>
+          <button
+            onClick={() => setContentTab('food')}
+            className={`flex-1 text-sm font-semibold px-3 py-2 rounded-lg transition-all flex items-center justify-center gap-1.5 ${contentTab === 'food' ? 'bg-white dark:bg-slate-600 shadow text-orange-500 dark:text-orange-300' : 'text-gray-500 dark:text-slate-400 hover:text-orange-500'}`}
+          >
+            🍽️ 美食特色
+          </button>
+        </div>
 
-        {spots.length > 0 ? (
-          <div className="space-y-3">
-            {spots.map((spot, idx) => <ScenicSpotCard key={idx} spot={spot} />)}
-          </div>
+        {contentTab === 'food' ? (
+          <FoodGuidePanel foodGuide={currentDay.foodGuide} />
         ) : (
-          <div className="text-center py-12 text-gray-400 dark:text-slate-500">
-            <Camera className="w-10 h-10 mx-auto mb-2 opacity-40" />
-            <p className="text-sm">此日無景點資料</p>
-          </div>
+          <>
+            {/* A/B plan toggle for Day 9 */}
+            {hasPlans && (
+              <div className="flex gap-2 mb-4 p-1 bg-gray-100 dark:bg-slate-700 rounded-xl">
+                {currentDay.plans.map((plan, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedPlan(idx)}
+                    className={`flex-1 text-sm font-semibold px-3 py-2 rounded-lg transition-all ${selectedPlan === idx ? 'bg-white dark:bg-slate-600 shadow text-blue-600 dark:text-blue-300' : 'text-gray-500 dark:text-slate-400 hover:text-blue-500'}`}
+                  >
+                    {plan.label}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {spots.length > 0 ? (
+              <div className="space-y-3">
+                {spots.map((spot, idx) => <ScenicSpotCard key={idx} spot={spot} />)}
+              </div>
+            ) : (
+              <div className="text-center py-12 text-gray-400 dark:text-slate-500">
+                <Camera className="w-10 h-10 mx-auto mb-2 opacity-40" />
+                <p className="text-sm">此日無景點資料</p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
