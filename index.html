@@ -386,6 +386,94 @@ const budgetData = {
   ]
 };
 
+const dailyBudgetData = [
+  {
+    day: 1, title: "飛抵熊本，直奔溫泉鄉",
+    items: [
+      { category: "✈️ 去程機票", jpyAmount: 185000, note: "5人去程 (含稅)" },
+      { category: "🚌 九州橫斷巴士", jpyAmount: 12000, note: "熊本機場→別府 (5人)" },
+      { category: "🏨 住宿 (別府溫泉旅館)", jpyAmount: 45000, note: "2間客房，溫泉旅館" },
+      { category: "🍱 餐飲", jpyAmount: 20000, note: "晚餐 + 零食 (5人)" }
+    ]
+  },
+  {
+    day: 2, title: "地獄巡禮 或 動物探險",
+    items: [
+      { category: "🎟️ 地獄巡禮 / 野生動物園門票", jpyAmount: 15000, note: "5人套票" },
+      { category: "🚌 當地巴士", jpyAmount: 5000, note: "別府市區路線巴士" },
+      { category: "🏨 住宿 (別府溫泉旅館)", jpyAmount: 45000, note: "2間客房，溫泉旅館" },
+      { category: "🍱 餐飲", jpyAmount: 20000, note: "三餐 + 零食 (5人)" }
+    ]
+  },
+  {
+    day: 3, title: "搭乘特急，前進博多",
+    items: [
+      { category: "🎫 JR 北九州 5日周遊券", jpyAmount: 60000, note: "3大2小，今日啟用" },
+      { category: "🚌 博多市區零星交通", jpyAmount: 5000, note: "Suica 充值等" },
+      { category: "🏨 住宿 (福岡博多商旅)", jpyAmount: 36000, note: "2間客房" },
+      { category: "🍱 餐飲", jpyAmount: 20000, note: "三餐 + 零食 (5人)" }
+    ]
+  },
+  {
+    day: 4, title: "清涼海洋世界",
+    items: [
+      { category: "🎟️ 海之中道海洋世界門票", jpyAmount: 10000, note: "5人入場券" },
+      { category: "🚌 JR 鹿兒島本線", jpyAmount: 3000, note: "JR Pass使用日 (Suica補充)" },
+      { category: "🏨 住宿 (福岡博多商旅)", jpyAmount: 36000, note: "2間客房" },
+      { category: "🍱 餐飲", jpyAmount: 20000, note: "三餐 + 零食 (5人)" }
+    ]
+  },
+  {
+    day: 5, title: "太宰府 或 光影藝術",
+    items: [
+      { category: "🎟️ teamLab / 太宰府門票", jpyAmount: 8000, note: "依選擇方案" },
+      { category: "🚌 西鐵電車 / 巴士", jpyAmount: 5000, note: "天神・太宰府往返" },
+      { category: "🏨 住宿 (福岡博多商旅)", jpyAmount: 36000, note: "2間客房" },
+      { category: "🍱 餐飲", jpyAmount: 20000, note: "三餐 + 零食 (5人)" }
+    ]
+  },
+  {
+    day: 6, title: "新幹線極速大移動",
+    items: [
+      { category: "🎟️ 熊本城特別公開門票", jpyAmount: 3000, note: "5人入場" },
+      { category: "🚌 熊本路面電車", jpyAmount: 5000, note: "市電接駁" },
+      { category: "🏨 住宿 (熊本城市商旅)", jpyAmount: 33000, note: "2間客房" },
+      { category: "🍱 餐飲", jpyAmount: 20000, note: "三餐 + 零食 (5人)" }
+    ]
+  },
+  {
+    day: 7, title: "阿蘇火山大自然",
+    items: [
+      { category: "🎟️ 阿蘇男孩號劃位費", jpyAmount: 4000, note: "5人對號座 (JR Pass使用最終日)" },
+      { category: "🏨 住宿 (熊本城市商旅)", jpyAmount: 33000, note: "2間客房" },
+      { category: "🍱 餐飲", jpyAmount: 20000, note: "三餐 + 零食 (5人)" }
+    ]
+  },
+  {
+    day: 8, title: "尋找部長與日式庭園",
+    items: [
+      { category: "🚌 熊本路面電車 1日券", jpyAmount: 3000, note: "市電全日周遊" },
+      { category: "🏨 住宿 (熊本城市商旅)", jpyAmount: 33000, note: "2間客房" },
+      { category: "🍱 餐飲", jpyAmount: 20000, note: "三餐 + 零食 (5人)" }
+    ]
+  },
+  {
+    day: 9, title: "彈性休息與美食慶功",
+    items: [
+      { category: "🚕 計程車 / OUTLET 交通", jpyAmount: 5000, note: "市區接駁" },
+      { category: "🏨 住宿 (熊本城市商旅)", jpyAmount: 33000, note: "2間客房" },
+      { category: "🍱 餐飲 (含慶功宴)", jpyAmount: 20000, note: "黑毛和牛 / 豬排慶功 (5人)" }
+    ]
+  },
+  {
+    day: 10, title: "滿載回憶，平安賦歸",
+    items: [
+      { category: "✈️ 回程機票", jpyAmount: 185000, note: "5人回程 (含稅)" },
+      { category: "🚌 利木津巴士 / 計程車", jpyAmount: 7000, note: "飯店→熊本機場 (5人)" }
+    ]
+  }
+];
+
 // ==========================================
 // 🎨 UI 元件區塊 (Components Section) 🎨
 // ==========================================
@@ -770,21 +858,40 @@ function App() {
             </div>
           ))}
         </div>}
-        {activeTab === 'budget' && <div className="animate-in fade-in duration-500">
-          <div className="bg-blue-600 text-white p-8 rounded-3xl mb-8 shadow-lg flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div><p className="opacity-70 mb-1">總預算預估 (5 人)</p><div className="text-4xl font-black">NT$ {totalTwd.toLocaleString()}</div></div>
+        {activeTab === 'budget' && <div className="animate-in fade-in duration-500 space-y-4">
+          {dailyBudgetData.map((dayBudget) => {
+            const dayTotalJpy = dayBudget.items.reduce((sum, item) => sum + item.jpyAmount, 0);
+            const dayTotalTwd = Math.round(dayTotalJpy * budgetData.currencyRate);
+            return (
+              <div key={dayBudget.day} className="bg-white dark:bg-slate-800 rounded-xl shadow overflow-hidden">
+                <div className="flex items-center justify-between bg-blue-50 dark:bg-slate-700/50 px-4 py-3 border-b dark:border-slate-700">
+                  <div>
+                    <span className="text-xs font-black text-blue-500 dark:text-blue-400 uppercase tracking-wider">Day {dayBudget.day}</span>
+                    <h3 className="font-bold text-sm mt-0.5">{dayBudget.title}</h3>
+                  </div>
+                  <div className="text-right ml-4 flex-shrink-0">
+                    <div className="text-xs text-gray-400 dark:text-slate-400">¥ {dayTotalJpy.toLocaleString()}</div>
+                    <div className="text-sm font-black text-blue-600 dark:text-blue-400">NT$ {dayTotalTwd.toLocaleString()}</div>
+                  </div>
+                </div>
+                <table className="w-full text-left text-xs">
+                  <tbody className="divide-y dark:divide-slate-700">
+                    {dayBudget.items.map((item, idx) => (
+                      <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-700/30">
+                        <td className="px-4 py-2.5 font-medium">{item.category}</td>
+                        <td className="px-4 py-2.5 text-gray-400 dark:text-slate-400 hidden sm:table-cell">{item.note}</td>
+                        <td className="px-4 py-2.5 text-right font-mono text-gray-600 dark:text-slate-300 whitespace-nowrap">¥{item.jpyAmount.toLocaleString()}</td>
+                        <td className="px-4 py-2.5 text-right font-bold text-blue-600 dark:text-blue-400 whitespace-nowrap">NT${Math.round(item.jpyAmount * budgetData.currencyRate).toLocaleString()}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+          })}
+          <div className="bg-blue-600 text-white p-8 rounded-3xl shadow-lg flex flex-col sm:flex-row justify-between items-center gap-4 mt-6">
+            <div><p className="opacity-70 mb-1">行程總預算 (5 人)</p><div className="text-4xl font-black">NT$ {totalTwd.toLocaleString()}</div></div>
             <div className="text-right"><p className="opacity-70 text-sm">約合日圓</p><div className="text-xl font-bold">¥ {totalJpy.toLocaleString()}</div></div>
-          </div>
-          <div className="bg-white dark:bg-slate-800 rounded-xl shadow overflow-hidden">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50 dark:bg-slate-900/50"><tr><th className="p-4">項目</th><th className="p-4 text-right">日圓</th><th className="p-4 text-right border-l dark:border-slate-700">台幣</th></tr></thead>
-              <tbody className="divide-y dark:divide-slate-700">
-                {budgetData.items.map((item, idx) => {
-                  const jpy = item.totalJpy || ((item.jpyPerAdult * totalAdults) + (item.jpyPerKid * totalKids));
-                  return (<tr key={idx}><td className="p-4 font-bold">{item.category}</td><td className="p-4 text-right font-mono">¥{jpy.toLocaleString()}</td><td className="p-4 text-right font-black text-blue-600">NT${Math.round(jpy * budgetData.currencyRate).toLocaleString()}</td></tr>);
-                })}
-              </tbody>
-            </table>
           </div>
         </div>}
       </main>
