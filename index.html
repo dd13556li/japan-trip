@@ -31,7 +31,7 @@
     const { createRoot } = ReactDOM;
     const { Map: MapIcon, Calendar, TrainFront: Train, Home, Ticket, Info, MapPin,
       Clock, Users, Sun, Coffee, Camera, ChevronDown, ChevronUp, Calculator, Wallet,
-      Car, Moon, ArrowRight, Navigation, Route, Plane } = LucideReact;
+      Car, Moon, ArrowRight, Navigation, Route, Plane, WashingMachine, BadgeCheck } = LucideReact;
 
 // ==========================================
 // 💡 核心資料區塊 (熊本進出版本)
@@ -67,6 +67,11 @@ const bases = [
     ],
     guesthouses: [
       { name: "J-Hoppers Beppu (別府)", desc: "提供寬敞的和室家庭房，附設共用廚房。" }
+    ],
+    laundryOptions: [
+      { name: "Rakuten STAY HOUSE 別府北濱", price: "約 NT$2,500–3,500／晚", desc: "整棟包棟公寓式民宿，客廳+廚房+獨立洗衣機，適合家族包住，步行可至別府北濱溫泉街。" },
+      { name: "Cross Hotel 別府", price: "約 NT$2,500–3,800／晚", desc: "連鎖城市商旅，大廳備有投幣式洗衣機與烘衣機，含早餐方案CP值高，步行5分鐘至車站。" },
+      { name: "APA Hotel 別府駅前", price: "約 NT$2,000–3,000／晚", desc: "連鎖商旅，各樓設有投幣式洗衣機，房間緊湊乾淨，性價比優異，鄰近別府車站。" }
     ]
   },
   {
@@ -81,6 +86,11 @@ const bases = [
     ],
     guesthouses: [
       { name: "Rakuten STAY 博多車站北", desc: "公寓式民宿，配有小廚房與洗衣機。" }
+    ],
+    laundryOptions: [
+      { name: "Rakuten STAY 博多車站北", price: "約 NT$2,500–3,500／晚", desc: "公寓式民宿，每間附獨立洗衣機與小廚房，博多車站步行約8分鐘，適合長住家庭。" },
+      { name: "MIMARU Fukuoka Tenjin", price: "約 NT$3,000–4,000／晚", desc: "公寓型飯店，每間客房標配洗衣機與烘衣機及廚房設備，天神鬧區步行即達百貨地下街。" },
+      { name: "Dormy Inn 博多中洲", price: "約 NT$2,500–3,500／晚", desc: "商旅品牌，有天然溫泉大浴場，大廳設投幣式洗衣機與烘衣機，夜間提供免費拉麵。" }
     ]
   },
   {
@@ -95,6 +105,11 @@ const bases = [
     ],
     guesthouses: [
       { name: "旅宿 隅次 (Sumitsugu)", desc: "傳統日式町家包棟民宿，適合三代同堂體驗在地生活。" }
+    ],
+    laundryOptions: [
+      { name: "Dormy Inn 熊本", price: "約 NT$2,500–3,500／晚", desc: "商旅品牌，大廳設投幣式洗衣機，夜間免費拉麵服務，大浴場長輩最愛，近櫻町巴士總站。" },
+      { name: "Rakuten STAY 熊本駅前", price: "約 NT$2,000–3,500／晚", desc: "公寓式民宿，附獨立洗衣機與廚房，熊本車站步行可達，4晚長住最為划算。" },
+      { name: "APA Hotel 熊本交通中心前", price: "約 NT$2,000–3,000／晚", desc: "連鎖商旅，樓層設投幣式洗衣機，交通中心（熊本站旁）步行即達，退房後提行李到機場最方便。" }
     ]
   }
 ];
@@ -559,6 +574,31 @@ function App() {
                 <div><h4 className="text-xs font-black uppercase text-slate-400 mb-2">推薦飯店</h4>{base.hotels.map((h, i) => <div key={i} className="mb-2 p-3 bg-slate-50 dark:bg-slate-900/50 rounded text-sm font-bold">{h.name}<p className="text-xs font-normal text-gray-500 mt-1">{h.desc}</p></div>)}</div>
                 <div><h4 className="text-xs font-black uppercase text-slate-400 mb-2">經濟民宿</h4>{base.guesthouses.map((gh, i) => <div key={i} className="mb-2 p-3 bg-teal-50/50 dark:bg-teal-900/10 rounded text-sm font-bold text-teal-800 dark:text-teal-400">{gh.name}<p className="text-xs font-normal text-teal-700/70 mt-1">{gh.desc}</p></div>)}</div>
               </div>
+              {base.laundryOptions && (
+                <div className="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700">
+                  <h4 className="flex items-center gap-2 text-sm font-black uppercase text-emerald-700 dark:text-emerald-400 mb-3">
+                    <WashingMachine className="w-4 h-4" />
+                    附洗衣機・每日 NT$2,000–4,000 優選清單
+                  </h4>
+                  <div className="grid sm:grid-cols-3 gap-3">
+                    {base.laundryOptions.map((opt, i) => (
+                      <div key={i} className="p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg border border-emerald-100 dark:border-emerald-800/40">
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <span className="text-sm font-bold text-emerald-900 dark:text-emerald-300 leading-snug">{opt.name}</span>
+                          <span className="flex-shrink-0 text-[10px] font-semibold bg-emerald-200/70 dark:bg-emerald-800/60 text-emerald-800 dark:text-emerald-200 px-2 py-0.5 rounded-full whitespace-nowrap">{opt.price}</span>
+                        </div>
+                        <p className="text-xs text-emerald-800/70 dark:text-emerald-400/80 leading-relaxed">{opt.desc}</p>
+                        <div className="flex items-center gap-1 mt-2">
+                          <WashingMachine className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">附洗衣機</span>
+                          <BadgeCheck className="w-3 h-3 text-emerald-600 dark:text-emerald-400 ml-1" />
+                          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">符合預算</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>}
@@ -593,7 +633,7 @@ function App() {
 }
 
 const IconComp = ({ name, ...props }) => {
-  const icons = { Calendar, Train, Home, Ticket, Info, MapPin, Clock, Users, Sun, Coffee, Camera, ChevronDown, ChevronUp, Calculator, Wallet, Car, Moon, ArrowRight, Navigation, MapIcon, Route, Plane };
+  const icons = { Calendar, Train, Home, Ticket, Info, MapPin, Clock, Users, Sun, Coffee, Camera, ChevronDown, ChevronUp, Calculator, Wallet, Car, Moon, ArrowRight, Navigation, MapIcon, Route, Plane, WashingMachine, BadgeCheck };
   const LucideIcon = icons[name] || Info;
   return <LucideIcon {...props} />;
 };
