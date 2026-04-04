@@ -713,8 +713,8 @@ function App() {
       <div className="bg-white dark:bg-slate-800 border-b dark:border-slate-700 sticky top-0 z-20 shadow-sm overflow-x-auto">
         <div className="max-w-5xl mx-auto px-4 flex">
           <TabButton active={activeTab === 'map'} onClick={() => setActiveTab('map')} icon={<Navigation size={18} />} label="🗺️ 軌跡地圖" />
-          <TabButton active={activeTab === 'scenic'} onClick={() => setActiveTab('scenic')} icon={<Camera size={18} />} label="景點介紹" />
           <TabButton active={activeTab === 'itinerary'} onClick={() => setActiveTab('itinerary')} icon={<MapIcon size={18} />} label="每日行程" />
+          <TabButton active={activeTab === 'scenic'} onClick={() => setActiveTab('scenic')} icon={<Camera size={18} />} label="景點介紹" />
           <TabButton active={activeTab === 'bases'} onClick={() => setActiveTab('bases')} icon={<Home size={18} />} label="住宿清單" />
           <TabButton active={activeTab === 'tickets'} onClick={() => setActiveTab('tickets')} icon={<Ticket size={18} />} label="必備票券" />
           <TabButton active={activeTab === 'budget'} onClick={() => setActiveTab('budget')} icon={<Wallet size={18} />} label="預算評估" />
