@@ -60,14 +60,7 @@ const bases = [
     name: "大分 (別府 或 由布院)",
     nights: "2 晚 (Day 1 - Day 2)",
     description: "抵達熊本後直接橫向移動至溫泉區，前兩天先享受溫泉與美食，消除搭機的疲勞。",
-    hotels: [
-      { name: "杉乃井大飯店 (Suginoi - 別府)", desc: "推薦！超大型溫泉樂園與豐盛自助餐，家庭首選。" },
-      { name: "AMANEK Beppu (別府)", desc: "頂樓有無邊際溫泉泳池，設計新穎。" },
-      { name: "由布院 壽花之莊 (由布院)", desc: "若想住由布院，這間離車站近，方便長輩。" }
-    ],
-    guesthouses: [
-      { name: "J-Hoppers Beppu (別府)", desc: "提供寬敞的和室家庭房，附設共用廚房。" }
-    ],
+
     laundryOptions: [
       { name: "Rakuten STAY HOUSE 別府北濱", price: "約 NT$2,500–3,500／晚", desc: "整棟包棟公寓式民宿，客廳+廚房+獨立洗衣機，適合家族包住，步行可至別府北濱溫泉街。" },
       { name: "Cross Hotel 別府", price: "約 NT$2,500–3,800／晚", desc: "連鎖城市商旅，大廳備有投幣式洗衣機與烘衣機，含早餐方案CP值高，步行5分鐘至車站。" },
@@ -84,14 +77,7 @@ const bases = [
     name: "福岡 (博多)",
     nights: "3 晚 (Day 3 - Day 5)",
     description: "九州最大的交通與購物中心。方便搭乘觀光列車，也能輕鬆前往海之中道或太宰府。",
-    hotels: [
-      { name: "JR 九州 Blossom 博多中央", desc: "博多車站筑紫口步行 2 分鐘，省去拖行李體力。" },
-      { name: "Hotel Forza Hakataeki", desc: "房間內有按摩椅，深受長輩喜愛。" },
-      { name: "博多都酒店", desc: "車站旁，頂樓有溫泉泳池。" }
-    ],
-    guesthouses: [
-      { name: "Rakuten STAY 博多車站北", desc: "公寓式民宿，配有小廚房與洗衣機。" }
-    ],
+
     laundryOptions: [
       { name: "Rakuten STAY 博多車站北", price: "約 NT$2,500–3,500／晚", desc: "公寓式民宿，每間附獨立洗衣機與小廚房，博多車站步行約8分鐘，適合長住家庭。" },
       { name: "MIMARU Fukuoka Tenjin", price: "約 NT$3,000–4,000／晚", desc: "公寓型飯店，每間客房標配洗衣機與烘衣機及廚房設備，天神鬧區步行即達百貨地下街。" },
@@ -107,14 +93,7 @@ const bases = [
     name: "熊本",
     nights: "4 晚 (Day 6 - Day 9)",
     description: "最後的重頭戲與大本營。逛熊本城、找熊本熊，最後一天從這裡去熊本機場最方便。",
-    hotels: [
-      { name: "THE BLOSSOM KUMAMOTO", desc: "熊本車站旁商場共構，免去拖行李轉車麻煩。" },
-      { name: "Dormy Inn 熊本", desc: "近櫻町巴士總站，晚上有免費拉麵與大浴場。" },
-      { name: "熊本日航飯店", desc: "市中心老字號高級飯店，服務細緻。" }
-    ],
-    guesthouses: [
-      { name: "旅宿 隅次 (Sumitsugu)", desc: "傳統日式町家包棟民宿，適合三代同堂體驗在地生活。" }
-    ],
+
     laundryOptions: [
       { name: "Dormy Inn 熊本", price: "約 NT$2,500–3,500／晚", desc: "商旅品牌，大廳設投幣式洗衣機，夜間免費拉麵服務，大浴場長輩最愛，近櫻町巴士總站。" },
       { name: "Rakuten STAY 熊本駅前", price: "約 NT$2,000–3,500／晚", desc: "公寓式民宿，附獨立洗衣機與廚房，熊本車站步行可達，4晚長住最為划算。" },
@@ -997,12 +976,8 @@ function App() {
             <div key={base.id} className="bg-white dark:bg-slate-800 rounded-xl shadow-md border-t-4 border-blue-500 p-6">
               <h3 className="text-xl font-black mb-2">{base.name} <span className="text-sm font-normal text-blue-500 ml-2">{base.nights}</span></h3>
               <p className="text-sm text-gray-500 mb-4">{base.description}</p>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div><h4 className="text-xs font-black uppercase text-slate-400 mb-2">推薦飯店</h4>{base.hotels.map((h, i) => <div key={i} className="mb-2 p-3 bg-slate-50 dark:bg-slate-900/50 rounded text-sm font-bold">{h.name}<p className="text-xs font-normal text-gray-500 mt-1">{h.desc}</p></div>)}</div>
-                <div><h4 className="text-xs font-black uppercase text-slate-400 mb-2">經濟民宿</h4>{base.guesthouses.map((gh, i) => <div key={i} className="mb-2 p-3 bg-teal-50/50 dark:bg-teal-900/10 rounded text-sm font-bold text-teal-800 dark:text-teal-400">{gh.name}<p className="text-xs font-normal text-teal-700/70 mt-1">{gh.desc}</p></div>)}</div>
-              </div>
               {base.laundryOptions && (
-                <div className="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700">
+                <div>
                   <h4 className="flex items-center gap-2 text-sm font-black uppercase text-emerald-700 dark:text-emerald-400 mb-3">
                     <WashingMachine className="w-4 h-4" />
                     附洗衣機・每日 NT$2,000–4,000 優選清單
