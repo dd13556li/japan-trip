@@ -128,7 +128,12 @@ const itinerary = [
       { time: "下午", desc: "抵達熊本機場。搭乘「九州橫斷巴士」或「山彥號 (やまびこ号)」直達別府或由布院。" },
       { time: "傍晚", desc: "抵達飯店 Check-in。第一天舟車勞頓，建議直接在飯店享用晚餐並泡湯休息。" }
     ],
-    tips: "從熊本機場有直達大分/別府的長途巴士，免去進市區轉車的麻煩。建議事先查好巴士時刻表。"
+    tips: "從熊本機場有直達大分/別府的長途巴士，免去進市區轉車的麻煩。建議事先查好巴士時刻表。",
+    spots: [
+      { name: "九州橫斷巴士 / 山彥號", category: "交通", desc: "從熊本機場直達別府或由布院的長途巴士，途經阿蘇山麓，沿途可欣賞大分縣綠意盎然的山景。全程約 2–2.5 小時，班次有限。", tips: "建議出發前在巴士官網查好時刻表並事先購票，暑假旺季座位緊張。" },
+      { name: "別府溫泉", category: "溫泉", desc: "日本泉質最多樣的溫泉城市，每日湧出量全國第一。街道上隨處可見裊裊白煙，旅館各具特色。建議第一晚直接在飯店泡湯，消除長途飛行疲勞。", tips: "若入住杉乃井大飯店，棚湯、海景露天溫泉等需分時段，入住後先索取泡湯時刻表。" },
+      { name: "由布院温泉（替代方案）", category: "溫泉", desc: "由布岳山腳下的靜謐溫泉小鎮，以金鱗湖晨霧與精緻伴手禮店聞名。街道平坦，老中青皆宜散步購物，氛圍比別府更悠閒浪漫。", tips: "金鱗湖早晨霧氣最美，建議早起前往，避開日間旅遊人潮。湯之坪街道飲食選擇豐富，留意店家公休日。" }
+    ]
   },
   {
     day: 2,
@@ -143,6 +148,11 @@ const itinerary = [
       { time: "方案 A", desc: "【別府地獄巡禮】挑選海地獄、灶地獄參觀，小朋友可體驗飲泉與足湯。" },
       { time: "方案 B", desc: "【野生動物園】搭乘巴士前往九州自然動物園，預約「叢林巴士」近距離餵食獅子大象。" },
       { time: "下午", desc: "若住杉乃井大飯店，下午可回飯店玩大型溫泉水上樂園。" }
+    ],
+    spots: [
+      { name: "別府地獄 — 海地獄 & 灶地獄", category: "自然奇景", desc: "「別府地獄巡禮」是別府最具代表性的觀光，共 8 處各具特色的天然熱泥池與溫泉池。海地獄呈鮮豔鈷藍色，灶地獄則有多個造型泥浴噴發表演，小朋友可享受泉水蒸蛋與足湯體驗。", tips: "推薦購買 7 地獄共通套票（約 ¥2,200 大人）更划算。參觀時間至少需 3–4 小時，建議早上開園即入場。夏季高溫加上蒸氣，請做好防曬補水。" },
+      { name: "九州自然動物園（アフリカンサファリ）", category: "親子體驗", desc: "日本規模最大的野生動物園之一，特色是「叢林巴士」服務——可直接在開放式巴士上近距離餵食獅子、花豹、熊等，刺激感十足，是小朋友的夢幻體驗。", tips: "叢林巴士極度熱門，建議提前 1 個月以上網路預約。抵達後先確認叢林巴士時刻，再安排其他區域參觀。請勿將手或食物伸出車外。" },
+      { name: "杉乃井大飯店 棚湯 & 水上樂園", category: "溫泉設施", desc: "若入住杉乃井大飯店，其「棚湯」半露天溫泉泳池群可俯瞰別府灣，尤其入夜後燈光點點、景色壯麗。館內水上樂園「AQUA BEAT」設有水滑梯，小朋友玩到不想走。", tips: "棚湯分男湯、女湯，時段限定入場，入住後務必確認當日開放時間。水上樂園需另行購票，請攜帶泳衣。" }
     ]
   },
   {
@@ -160,7 +170,12 @@ const itinerary = [
       { time: "下午", desc: "博多車站 JR Hakata City 頂樓「燕林廣場」看火車，或前往 LaLaport 購物中心看 1:1 鋼彈。" },
       { time: "晚餐", desc: "博多車站空天 (Kooten) 美食街，冷氣涼爽，不需走遠。" }
     ],
-    tips: "💡 行李寄送日：若嫌大件行李麻煩，Day 2 晚上可從別府寄出大行李至 Day 6 的熊本飯店，今日帶著輕便行囊搭車！"
+    tips: "💡 行李寄送日：若嫌大件行李麻煩，Day 2 晚上可從別府寄出大行李至 Day 6 的熊本飯店，今日帶著輕便行囊搭車！",
+    spots: [
+      { name: "JR 博多城 — 燕林廣場", category: "觀景體驗", desc: "博多車站頂樓的免費開放展望廣場，可俯瞰整個博多市區與進出站的新幹線列車。鐵道迷必訪，小朋友可以近距離看列車呼嘯而過，驚喜感十足。", tips: "免費入場。最佳觀車時段是新幹線班次集中的上下午尖峰時間，可搭配電梯直達屋頂。" },
+      { name: "LaLaport 福岡 — 1:1 鋼彈立像", category: "潮流景點", desc: "日本第三座等比例（約 24 公尺）鋼彈立像，2022 年開幕，夜晚有精彩燈光秀。商場同層設有 GUNDAM SIDE-F 旗艦店，各式鋼彈模型、周邊應有盡有，購物一站搞定。", tips: "鋼彈立像全天可觀賞，特殊燈光演出需查看官網時刻。GUNDAM SIDE-F 熱門商品常賣斷，建議盡早前往選購。" },
+      { name: "博多運河城 (Canal City Hakata)", category: "購物餐飲", desc: "博多市中心最知名的購物娛樂複合設施，擁有露天運河與噴水池，每天定時上演水舞秀。商場涵蓋餐廳、服飾、藥妝、遊戲廳，傍晚散步極宜。", tips: "水舞秀定時演出（通常每小時一次），表演時可在運河旁找好位置觀賞。夏季有冷氣的室內走廊，是避暑逛街的好選擇。" }
+    ]
   },
   {
     day: 4,
@@ -176,6 +191,10 @@ const itinerary = [
       { time: "中午", desc: "水族館內景觀餐廳用餐。" },
       { time: "下午", desc: "視長輩體力，可搭乘遊園小火車遊覽海之中道海濱公園。" },
       { time: "傍晚", desc: "回到市區，前往「博多運河城」看水舞秀與吃晚餐。" }
+    ],
+    spots: [
+      { name: "海之中道海洋世界 (マリンワールド海の中道)", category: "親子景點", desc: "九州最大的水族館，以全室內冷氣環境著稱，盛夏出遊的最佳選擇。館內有大型洄游魚缸、企鵝區、水母展示，以及每日多場海豚秀與海獅表演，老少咸宜。", tips: "海豚秀座位有限，入館後先確認當日表演時刻並提前就座。建議使用 JR Pass 搭乘鹿兒島本線至西戶崎站，再步行或轉小火車前往。" },
+      { name: "博多運河城 — 水舞秀", category: "購物餐飲", desc: "傍晚回市區後，博多運河城是覓食與散步的首選。開放式運河每小時有定時水舞秀，搭配音樂與燈光，夏夜氛圍迷人。B1–5F 集合餐廳、伴手禮與藥妝。", tips: "水舞秀在戶外運河廣場進行，夏日傍晚涼爽宜人。建議晚餐選在水舞秀前後，邊用餐邊欣賞表演。" }
     ]
   },
   {
@@ -191,6 +210,11 @@ const itinerary = [
       { time: "方案 A", desc: "【文化之旅】前往太宰府天滿宮參拜，吃現烤梅枝餅。中午前返回市區避暑。" },
       { time: "方案 B", desc: "【室內光影】前往 PayPay 巨蛋旁的 BOSS E・ZO FUKUOKA 體驗 teamLab Forest 沉浸式互動藝術。" },
       { time: "下午", desc: "天神地下街逛街，這裡有冷氣且藥妝服飾齊全。" }
+    ],
+    spots: [
+      { name: "太宰府天滿宮", category: "文化古蹟", desc: "全日本學問之神菅原道真的長眠之地，也是九州最具代表性的神社之一。本殿前有著名的「飛梅」樹，參道兩側梅枝餅老舖飄香，步行約 10 分鐘即可抵達本殿，長輩無負擔。", tips: "夏季氣溫較高，建議中午前參拜完畢。参道上的「梅枝餅」必嚐，現烤外脆內軟。西鐵太宰府站步行 5 分鐘可達，不需轉乘。" },
+      { name: "BOSS E・ZO FUKUOKA — teamLab Forest", category: "沉浸藝術", desc: "位於PayPay巨蛋旁的複合娛樂設施，teamLab Forest 是全室內的沉浸式互動數位藝術展，以「森林」為主題，燈光互動作品適合全家探索，避開戶外酷暑的絕佳選擇。", tips: "teamLab Forest 需提前在官網購票，旺季門票可能售罄。參觀時間建議預留 90 分鐘以上，穿著深色服裝可讓光效更突出。" },
+      { name: "天神地下街", category: "購物", desc: "福岡最大的地下購物街，全長約 590 公尺，串聯多棟百貨公司地下層，集結藥妝、服飾、餐廳與甜點。全程冷氣，夏日血拼天堂，雨天也完全不受影響。", tips: "天神地下街有多個出入口，建議下車前確認使用哪個出口最接近目的地，以免在地下商場迷路。" }
     ]
   },
   {
@@ -207,6 +231,10 @@ const itinerary = [
       { time: "中午", desc: "抵達熊本飯店 Check-in，領取寄送的大行李（若有寄送）。" },
       { time: "下午", desc: "搭乘路面電車前往「熊本城」與「櫻之馬場 城彩苑」。熊本城有無障礙空中步道，推車與長輩皆宜。" },
       { time: "晚餐", desc: "城彩苑品嚐太平燕，或在上下通吃黑馬油拉麵。" }
+    ],
+    spots: [
+      { name: "熊本城", category: "文化古蹟", desc: "日本三大名城之一，以雄偉的武者返石垣工法著稱。2016 年熊本地震後重建，現已開放「特別公開」參觀通道，透過空中步道可近距離觀察石垣修復現場，具有極高的歷史與教育意義。", tips: "熊本城設有無障礙空中步道，嬰兒推車可全程進入，長輩體力消耗較小。建議購買城彩苑聯票，同時可遊覽歷史文化館。夏日建議上午參觀，下午熱度驟升。" },
+      { name: "桜の馬場 城彩苑", category: "飲食文化", desc: "位於熊本城腳下的復古文化商業街，仿江戶時代風格，集合熊本名物餐廳、伴手禮與熊本熊周邊商品。「湧々座」為免費的歷史體驗館，可試穿武士甲冑拍照。", tips: "太平燕（熊本特色雞蛋湯麵）是城彩苑必嚐名物，多家店家各有特色口味。伴手禮區有各式熊本熊商品，是採購禮品的好地方。" }
     ]
   },
   {
@@ -223,7 +251,12 @@ const itinerary = [
       { time: "中午", desc: "抵達阿蘇後轉乘巴士至「草千里」，在寬廣草原看馬匹散步，呼吸高山新鮮空氣。" },
       { time: "下午", desc: "搭乘觀光列車返回熊本市區。" }
     ],
-    tips: "「阿蘇男孩號」全車對號座，極度熱門，務必提前一個月在網路付費劃位！"
+    tips: "「阿蘇男孩號」全車對號座，極度熱門，務必提前一個月在網路付費劃位！",
+    spots: [
+      { name: "阿蘇男孩號 (あそぼーい！)", category: "觀光列車", desc: "JR 九州最受歡迎的親子觀光列車，車身繪有可愛柴犬圖案。車廂設計非常特別：設有兒童木球池、白色沙發座席、全景展望車廂，以及可在車上購買的鐵路便當與限定甜點。從熊本到阿蘇約 80 分鐘。", tips: "全車對號座，極度熱門，務必在確認行程後立即至 JR 九州官網或 Klook 付費劃位（約 ¥1,000/人），1 個月前開放預約，常常快速售罄。" },
+      { name: "草千里濱 (草千里ヶ浜)", category: "自然景觀", desc: "位於阿蘇中岳山腳的寬廣火山草原，直徑約 1 公里的圓形窪地，兩座圓形湖點綴其中，馬匹自由漫步其間。海拔約 1,140 公尺，夏日氣溫涼爽宜人，是難得的高原避暑勝地。", tips: "阿蘇火山依火山活動狀況可能限制參觀範圍，出發前請至阿蘇山公式網站確認火山警戒等級。草千里提供馬匹騎乘體驗（需現場購票），是小朋友難忘的回憶。" },
+      { name: "阿蘇神社（周邊）", category: "文化古蹟", desc: "位於阿蘇市的千年古社，以「楼門」建築著名，也是阿蘇地區的信仰中心。2016 年地震導致樓門倒塌，目前已重建完工，象徵阿蘇的復甦，具有特殊的參觀意義。", tips: "若時間允許，可在阿蘇車站附近的「阿蘇神社」周邊走走。神社前的門前町商店街有阿蘇牛乳冰淇淋與地方土產。" }
+    ]
   },
   {
     day: 8,
@@ -238,6 +271,11 @@ const itinerary = [
       { time: "上午", desc: "搭乘路面電車前往「水前寺成趣園」。平坦的日式庭園，買包飼料讓小朋友開心餵魚。" },
       { time: "下午", desc: "前往「熊本熊廣場 (Kumamon Square)」，提前查好部長辦公時間，看熊本熊趣味表演。" },
       { time: "傍晚", desc: "在「上通、下通商店街」展開最後的藥妝與伴手禮大採購（這裡有巨型遮雨棚，不怕日曬雨淋）。" }
+    ],
+    spots: [
+      { name: "水前寺成趣園", category: "日式庭園", desc: "建於江戶時代的迴游式日本庭園，以人工再現東海道五十三次的縮景風光，園中湧出的阿蘇伏流水清澈透明，大量錦鯉悠游，是熊本市區最具代表性的名勝之一。庭園地勢平坦，推車與長輩步行均無障礙。", tips: "園內有飼料販售機，購買飼料讓小朋友餵魚是必體驗。建議平日上午前往避開人潮，清晨的晨霧與庭園相映成趣。" },
+      { name: "熊本熊廣場 (Kumamon Square)", category: "吉祥物體驗", desc: "熊本熊部長的「辦公室」，每週固定時段有熊本熊出現表演互動節目，包括跳舞、搞笑橋段與合照時間，完全免費入場觀賞，是全家的歡樂時光。", tips: "熊本熊出沒時間不固定，務必提前至官網確認當週表演時刻表。廣場本身免費參觀，周邊有熊本熊官方商品販售，限定商品建議早到搶購。" },
+      { name: "上通・下通商店街", category: "購物", desc: "熊本市中心最繁華的室內商店街，全程有遮雨棚遮蔽日曬雨淋，集結藥妝、服飾、甜點與各式土產。鶴屋百貨、TSURUYA 超市等知名店鋪均在此，是採購伴手禮的最佳地點。", tips: "藥妝推薦：鶴屋百貨 B1 美食區有熊本限定口味零食。馬肉相關食品（馬刺、馬肉香腸）是熊本獨有的伴手禮，建議在這裡採購冷藏帶回。" }
     ]
   },
   {
@@ -266,7 +304,10 @@ const itinerary = [
           { time: "傍晚", desc: "返回飯店，將新購戰利品妥善打包進行李，明日輕鬆退房。" },
           { time: "晚餐", desc: "熊本名物慶功宴！可挑選高級的『黑毛和牛燒肉』或『勝烈亭豬排』為旅程畫下完美句點。" }
         ],
-        tips: "イオンモール熊本 位於益城町，距熊本機場僅約 10 分鐘車程，行程結束後打包隔日直奔機場超方便。建議攜帶摺疊購物袋，或在賣場購入行李綁帶。"
+        tips: "イオンモール熊本 位於益城町，距熊本機場僅約 10 分鐘車程，行程結束後打包隔日直奔機場超方便。建議攜帶摺疊購物袋，或在賣場購入行李綁帶。",
+        spots: [
+          { name: "イオンモール熊本 (Aeon Mall Kumamoto)", category: "購物中心", desc: "位於益城町的超大型綜合購物中心，是熊本近郊規模最大的商場之一。集合服飾、運動品牌（Nike、Adidas）、藥妝（松本清）、超市、餐廳及兒童遊樂區，最後衝刺採購一站搞定。距熊本機場僅約 10 分鐘車程，隔日退房前往機場極為順暢。", tips: "建議攜帶摺疊購物袋或在賣場入口購入大行李袋。超市熟食區有各種便宜的日式便當和甜點，適合最後一日午餐。藥妝最後比價，確認行李重量後再採購。" }
+        ]
       },
       {
         label: "😴 方案 B：彈性休息",
@@ -277,6 +318,10 @@ const itinerary = [
           { time: "上午", desc: "睡到自然醒。長輩可在飯店休息，家長可帶小孩去市區的兒童館或百貨公司晃晃。" },
           { time: "下午", desc: "飯店內整理行李，將滿滿的戰利品妥善打包。" },
           { time: "晚餐", desc: "熊本名物慶功宴！可挑選高級的『黑毛和牛燒肉』或『勝烈亭豬排』為旅程畫下完美句點。" }
+        ],
+        spots: [
+          { name: "熊本市兒童館 (子どもたちのしろ)", category: "親子設施", desc: "位於熊本市中心附近的室內兒童設施，備有各式遊戲區、體驗學習角落與適合嬰幼兒的遊樂空間，全程冷氣，是炎熱夏日讓小朋友盡情放電的免費（或低費）好去處。", tips: "建議出發前確認熊本市兒童館當日開放時間與預約方式，部分活動需事先申請。長輩可在附近咖啡廳休息。" },
+          { name: "上通・下通商店街（最終採購）", category: "購物", desc: "旅程最後的伴手禮衝刺時機。若尚有未買的藥妝、零食或熊本熊周邊商品，上下通商店街是最後採購的最佳選擇，步行可達且攤位密集。", tips: "打包日行程輕鬆，可利用早上空閒時間做最後的購物清單核對，確認每位家人的需求，避免遺漏。部分店家週一公休，建議事先確認。" }
         ]
       }
     ]
@@ -294,6 +339,9 @@ const itinerary = [
       { time: "上午", desc: "飯店悠閒享用早餐後辦理退房。" },
       { time: "中午/下午", desc: "從熊本櫻町巴士總站或熊本車站，搭乘利木津巴士前往「熊本機場」(阿蘇熊本機場)。若行李太多，也可請飯店叫 2 台計程車。" },
       { time: "機場", desc: "熊本機場新航廈設計非常漂亮，可在機場內吃點心、做最後免稅品採購，搭機返台。" }
+    ],
+    spots: [
+      { name: "熊本機場新航廈 (阿蘇くまもと空港)", category: "機場設施", desc: "2023 年啟用的全新航廈，以阿蘇大自然為設計靈感，室內木構造大廳氣勢磅礴，被評選為日本最美機場之一。航廈內有美食廣場、熊本名物土產專區、免稅品店與觀景台，值得預留時間慢慢逛。", tips: "建議提早 2.5–3 小時抵達機場，預留充裕時間辦理退稅（需備妥護照與購物收據）、寄送超重行李與最後免稅品採購。熊本機場免稅店的人氣馬油系列保養品常被掃空，請盡早前往。" }
     ]
   }
 ];
@@ -389,6 +437,116 @@ const RouteVisualizer = ({ locations, mapInfo }) => (
     </div>
   </div>
 );
+
+const categoryColors = {
+  "溫泉": "bg-pink-100 text-pink-700 dark:bg-pink-900/40 dark:text-pink-300",
+  "交通": "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300",
+  "親子景點": "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300",
+  "親子體驗": "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300",
+  "自然奇景": "bg-teal-100 text-teal-700 dark:bg-teal-900/40 dark:text-teal-300",
+  "自然景觀": "bg-teal-100 text-teal-700 dark:bg-teal-900/40 dark:text-teal-300",
+  "溫泉設施": "bg-pink-100 text-pink-700 dark:bg-pink-900/40 dark:text-pink-300",
+  "觀景體驗": "bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300",
+  "潮流景點": "bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300",
+  "購物餐飲": "bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300",
+  "購物中心": "bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300",
+  "購物": "bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300",
+  "文化古蹟": "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
+  "飲食文化": "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300",
+  "觀光列車": "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300",
+  "沉浸藝術": "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300",
+  "日式庭園": "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
+  "吉祥物體驗": "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300",
+  "親子設施": "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300",
+  "機場設施": "bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300",
+};
+
+const ScenicSpotCard = ({ spot }) => {
+  const colorClass = categoryColors[spot.category] || "bg-gray-100 text-gray-600 dark:bg-slate-700 dark:text-slate-300";
+  return (
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm p-4 sm:p-5">
+      <div className="flex items-start justify-between gap-2 mb-2">
+        <h4 className="font-bold text-gray-800 dark:text-slate-100 text-base leading-snug">{spot.name}</h4>
+        <span className={`flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-full ${colorClass}`}>{spot.category}</span>
+      </div>
+      <p className="text-sm text-gray-600 dark:text-slate-300 leading-relaxed mb-3">{spot.desc}</p>
+      {spot.tips && (
+        <div className="flex gap-2 items-start bg-orange-50 dark:bg-orange-900/20 border border-orange-100 dark:border-orange-800/30 rounded-lg p-3">
+          <Info className="w-4 h-4 text-orange-500 dark:text-orange-400 flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-orange-800 dark:text-orange-200 leading-relaxed">{spot.tips}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const ScenicIntroTab = () => {
+  const [selectedDayIdx, setSelectedDayIdx] = useState(0);
+  const [selectedPlan, setSelectedPlan] = useState(0);
+
+  const currentDay = itinerary[selectedDayIdx];
+  const hasPlans = !!currentDay.plans;
+  const spots = hasPlans
+    ? (currentDay.plans[selectedPlan]?.spots || [])
+    : (currentDay.spots || []);
+
+  const handleDayClick = (idx) => { setSelectedDayIdx(idx); setSelectedPlan(0); };
+
+  return (
+    <div className="flex flex-col md:flex-row gap-4 animate-in fade-in duration-500">
+      {/* Day list (left panel) */}
+      <div className="w-full md:w-1/4 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-1 md:pb-0">
+        {itinerary.map((day, idx) => (
+          <button
+            key={idx}
+            onClick={() => handleDayClick(idx)}
+            className={`flex-shrink-0 md:flex-shrink text-left p-3 rounded-xl border transition-all ${selectedDayIdx === idx ? 'bg-blue-50 border-blue-300 dark:bg-blue-900/30 dark:border-blue-600' : 'bg-white dark:bg-slate-800 border-gray-100 dark:border-slate-700 hover:border-blue-200 dark:hover:border-slate-500'}`}
+          >
+            <span className="font-bold text-sm block">Day {day.day}</span>
+            <p className="text-xs text-gray-500 dark:text-slate-400 truncate">{day.title}</p>
+          </button>
+        ))}
+      </div>
+
+      {/* Spots content (right panel) */}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 font-bold rounded-lg w-10 h-10 flex items-center justify-center text-sm flex-shrink-0">D{currentDay.day}</div>
+          <div>
+            <h3 className="font-bold text-lg text-gray-800 dark:text-slate-100">{currentDay.title}</h3>
+            <span className="text-xs text-gray-400 dark:text-slate-400 flex items-center gap-1"><MapPin className="w-3 h-3" />{currentDay.base}</span>
+          </div>
+        </div>
+
+        {/* A/B plan toggle for Day 9 */}
+        {hasPlans && (
+          <div className="flex gap-2 mb-4 p-1 bg-gray-100 dark:bg-slate-700 rounded-xl">
+            {currentDay.plans.map((plan, idx) => (
+              <button
+                key={idx}
+                onClick={() => setSelectedPlan(idx)}
+                className={`flex-1 text-sm font-semibold px-3 py-2 rounded-lg transition-all ${selectedPlan === idx ? 'bg-white dark:bg-slate-600 shadow text-blue-600 dark:text-blue-300' : 'text-gray-500 dark:text-slate-400 hover:text-blue-500'}`}
+              >
+                {plan.label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {spots.length > 0 ? (
+          <div className="space-y-3">
+            {spots.map((spot, idx) => <ScenicSpotCard key={idx} spot={spot} />)}
+          </div>
+        ) : (
+          <div className="text-center py-12 text-gray-400 dark:text-slate-500">
+            <Camera className="w-10 h-10 mx-auto mb-2 opacity-40" />
+            <p className="text-sm">此日無景點資料</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const DayCard = ({ dayData }) => {
   const [expanded, setExpanded] = useState(false);
@@ -555,6 +713,7 @@ function App() {
       <div className="bg-white dark:bg-slate-800 border-b dark:border-slate-700 sticky top-0 z-20 shadow-sm overflow-x-auto">
         <div className="max-w-5xl mx-auto px-4 flex">
           <TabButton active={activeTab === 'map'} onClick={() => setActiveTab('map')} icon={<Navigation size={18} />} label="🗺️ 軌跡地圖" />
+          <TabButton active={activeTab === 'scenic'} onClick={() => setActiveTab('scenic')} icon={<Camera size={18} />} label="景點介紹" />
           <TabButton active={activeTab === 'itinerary'} onClick={() => setActiveTab('itinerary')} icon={<MapIcon size={18} />} label="每日行程" />
           <TabButton active={activeTab === 'bases'} onClick={() => setActiveTab('bases')} icon={<Home size={18} />} label="住宿清單" />
           <TabButton active={activeTab === 'tickets'} onClick={() => setActiveTab('tickets')} icon={<Ticket size={18} />} label="必備票券" />
@@ -564,6 +723,7 @@ function App() {
 
       <main className="max-w-5xl mx-auto p-4 sm:p-6 pb-20">
         {activeTab === 'map' && <div className="animate-in fade-in duration-500"><InteractiveTrajectoryMap /></div>}
+        {activeTab === 'scenic' && <ScenicIntroTab />}
         {activeTab === 'itinerary' && <div className="animate-in fade-in duration-500 space-y-2">{itinerary.map(day => <DayCard key={day.day} dayData={day} />)}</div>}
         {activeTab === 'bases' && <div className="animate-in fade-in duration-500 space-y-6">
           {bases.map((base) => (
